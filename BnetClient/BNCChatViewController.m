@@ -22,19 +22,13 @@
 
 @implementation BNCChatViewController
 
-- (void)viewDidAppear:(BOOL)__unused animated
+- (void)awakeFromNib
 {
     self.connection = [[BNCChatConnection alloc] initWithDelegate:self];
-    
-    self.chatBox.layer.borderColor      = [UIColor blackColor].CGColor;
-    self.chatBox.layer.borderWidth      = 1.0f;
-    self.channelLabel.layer.borderColor = [UIColor blackColor].CGColor;
-    self.channelLabel.layer.borderWidth = 1.0f;
-    self.channelList.layer.borderColor  = [UIColor blackColor].CGColor;
-    self.channelList.layer.borderWidth  = 1.0f;
-    self.textField.layer.borderColor    = [UIColor blackColor].CGColor;
-    self.textField.layer.borderWidth    = 1.0f;
-    
+}
+
+- (void)viewDidAppear:(BOOL)__unused animated
+{
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(keyboardWillShow:)
                                                name:UIKeyboardWillShowNotification
@@ -67,7 +61,7 @@
     NSTimeInterval animationDuration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat height = MIN(keyboardFrame.size.height, keyboardFrame.size.width);
-    
+
     self.textViewBottomSpaceConstraint.constant = 50 + height;
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
@@ -232,7 +226,7 @@
             [self.channelUsers addObject:username];
             [self.channelList reloadData];
             break;
-            
+
         case EID_JOIN:
             [self.channelUsers addObject:username];
             [self.channelList reloadData];
@@ -241,7 +235,7 @@
                 kAddChatTextKey: [NSString stringWithFormat:@"%@ has joined the channel.", username]
             }]];
             break;
-            
+
         case EID_LEAVE:
             [self.channelUsers removeObject:username];
             [self.channelList reloadData];
@@ -250,7 +244,7 @@
                 kAddChatTextKey: [NSString stringWithFormat:@"%@ has left the channel.", username]
             }]];
             break;
-        
+
         case EID_TALK:
             [self.chatBox addChat:@[@{
                 kAddChatColorKey: [BNCColorManager chatUsernameColor],
@@ -260,7 +254,7 @@
                 kAddChatTextKey: text
             }]];
             break;
-        
+
         case EID_CHANNEL:
             self.channelUsers = [NSMutableArray new];
             [self.channelList reloadData];
@@ -284,14 +278,14 @@
                 kAddChatTextKey: text
             }]];
             break;
-            
+
         case EID_ERROR:
             [self.chatBox addChat:@[@{
                 kAddChatColorKey: [BNCColorManager errorColor],
                 kAddChatTextKey: text
             }]];
             break;
-            
+
         default:
             [self.chatBox addChat:@[@{
                 kAddChatColorKey: [BNCColorManager debugColor],
@@ -318,12 +312,12 @@
         kAddChatTextKey: [NSString stringWithFormat:@"[BNFTP] Downloaded %@ to %@",
                             bnftp.filename, bnftp.path]
     }]];
-    
+
     BNCIconsBni *bni = [BNCIconsBni new];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:bni.targaImage];
     [self.view addSubview:imageView];
     imageView.frame = CGRectMake(0, 0, 28, 280);
-    
+
     [UIView animateWithDuration:10.0 animations:^{
         imageView.frame = CGRectMake(0, 0, 28*3, 280*3);
     }];
@@ -339,9 +333,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
-    
+
     cell.textLabel.text = self.channelUsers[indexPath.row];
-    
+
     return cell;
 }
 
