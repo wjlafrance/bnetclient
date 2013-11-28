@@ -12,6 +12,8 @@
 		3D07C5831847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5821847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m */; };
 		3D07C5861847E18E0073B0A5 /* CALayer+NibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5851847E18E0073B0A5 /* CALayer+NibConfiguration.m */; };
 		3D07C5881847E20E0073B0A5 /* CALayerNibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5871847E20E0073B0A5 /* CALayerNibConfiguration.m */; };
+		3D07C58C1847FC470073B0A5 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C58B1847FC470073B0A5 /* UIImage+Crop.m */; };
+		3D07C58E18480CC40073B0A5 /* BNCIconsBniSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C58D18480CC40073B0A5 /* BNCIconsBniSpec.m */; };
 		3D4207FB1791CF03001BB6C7 /* BNCColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4207FA1791CF03001BB6C7 /* BNCColorManager.m */; };
 		3D4207FF1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4207FE1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.m */; };
 		3D4208031791E3C1001BB6C7 /* UIImage+TargaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4208021791E3C1001BB6C7 /* UIImage+TargaData.m */; };
@@ -85,6 +87,9 @@
 		3D07C5841847E18E0073B0A5 /* CALayer+NibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+NibConfiguration.h"; sourceTree = "<group>"; };
 		3D07C5851847E18E0073B0A5 /* CALayer+NibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+NibConfiguration.m"; sourceTree = "<group>"; };
 		3D07C5871847E20E0073B0A5 /* CALayerNibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CALayerNibConfiguration.m; sourceTree = "<group>"; };
+		3D07C58A1847FC470073B0A5 /* UIImage+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
+		3D07C58B1847FC470073B0A5 /* UIImage+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
+		3D07C58D18480CC40073B0A5 /* BNCIconsBniSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCIconsBniSpec.m; sourceTree = "<group>"; };
 		3D4207F91791CF03001BB6C7 /* BNCColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCColorManager.h; sourceTree = "<group>"; };
 		3D4207FA1791CF03001BB6C7 /* BNCColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCColorManager.m; sourceTree = "<group>"; };
 		3D4207FD1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCPacketSidCreateAccount2.h; sourceTree = "<group>"; };
@@ -242,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				3D07C5781847B9510073B0A5 /* XSha1Spec.m */,
+				3D07C58D18480CC40073B0A5 /* BNCIconsBniSpec.m */,
 			);
 			name = BattleNet;
 			sourceTree = "<group>";
@@ -369,6 +375,8 @@
 				3D8CA48D169544170011B8BD /* NSData+BrokenSHA1.m */,
 				3D07C5841847E18E0073B0A5 /* CALayer+NibConfiguration.h */,
 				3D07C5851847E18E0073B0A5 /* CALayer+NibConfiguration.m */,
+				3D07C58A1847FC470073B0A5 /* UIImage+Crop.h */,
+				3D07C58B1847FC470073B0A5 /* UIImage+Crop.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -573,6 +581,7 @@
 				3D66D4DF168A6FCD00BA08E1 /* BNCPacketSidChatEvent.m in Sources */,
 				3D4207FF1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.m in Sources */,
 				3D66D4E2168A76CD00BA08E1 /* BNCPacketSidMessageBox.m in Sources */,
+				3D07C58C1847FC470073B0A5 /* UIImage+Crop.m in Sources */,
 				3D66D4E5168A831300BA08E1 /* BNCPacketSidEnterChat.m in Sources */,
 				3D44EDA1168D246D00B0E45F /* BNCPacket.m in Sources */,
 				3D44EDC01693A09400B0E45F /* UITextView+AddChat.m in Sources */,
@@ -592,6 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D07C5831847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m in Sources */,
+				3D07C58E18480CC40073B0A5 /* BNCIconsBniSpec.m in Sources */,
 				3D07C5791847B9510073B0A5 /* XSha1Spec.m in Sources */,
 				3D07C5881847E20E0073B0A5 /* CALayerNibConfiguration.m in Sources */,
 				3D07C5741847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m in Sources */,

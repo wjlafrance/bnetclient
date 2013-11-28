@@ -18,6 +18,8 @@
 
 @property (strong) BNCChatConnection *connection;
 
+@property (strong) BNCIconsBni *icons;
+
 @end
 
 @implementation BNCChatViewController
@@ -25,6 +27,11 @@
 - (void)awakeFromNib
 {
     self.connection = [[BNCChatConnection alloc] initWithDelegate:self];
+
+    BNCFileTransferConnection *bnftp = [BNCFileTransferConnection new];
+    NSString *downloadPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"icons.bni"];
+    [bnftp downloadFile:@"icons.bni" toPath:downloadPath];
+
 }
 
 - (void)viewDidAppear:(BOOL)__unused animated
@@ -37,6 +44,8 @@
                                            selector:@selector(keyboardWillHide:)
                                                name:UIKeyboardWillHideNotification
                                              object:nil];
+
+    [self.view addSubview:[[UIImageView alloc] initWithImage:[self.icons imageForFlags:0 client:@"W2BN"]]];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)__unused toInterfaceOrientation
@@ -313,14 +322,9 @@
                             bnftp.filename, bnftp.path]
     }]];
 
-    BNCIconsBni *bni = [BNCIconsBni new];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:bni.targaImage];
-    [self.view addSubview:imageView];
-    imageView.frame = CGRectMake(0, 0, 28, 280);
-
-    [UIView animateWithDuration:10.0 animations:^{
-        imageView.frame = CGRectMake(0, 0, 28*3, 280*3);
-    }];
+    if ([path hasSuffix:@"icons.bni"]) {
+        self.icons = [[BNCIconsBni alloc] initWithPath:bnftp.path];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -333,9 +337,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
-
     cell.textLabel.text = self.channelUsers[indexPath.row];
-
     return cell;
 }
 

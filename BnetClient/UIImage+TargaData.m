@@ -27,47 +27,39 @@
     CGSize size = CGSizeMake([data readUInt16], [data readUInt16]);
     [data readUInt8];
     [data readUInt8]; // start descriptor
-    
-    int numPixels = size.height * size.width;
-    for (int numPixelsWritten = 0; numPixelsWritten < numPixels; ) {
-        uint8_t pixelCount = [data readUInt8];
-        if ((pixelCount & 0x80) == 0x80) {
-            // Most significant bit is set - read one pixel and write many times
-            pixelCount -= 127;
-            uint8_t blue = [data readUInt8];
-            uint8_t green = [data readUInt8];
-            uint8_t red = [data readUInt8];
-            for (int pixel = 0; pixel < pixelCount; pixel++) {
-                [pixelData writeUInt8:red];
-                [pixelData writeUInt8:green];
-                [pixelData writeUInt8:blue];
-                [pixelData writeUInt8:1];
+
+    // Repeating pixels are compressed. Read one byte to get the run length.
+    // If the most significant bit (0x80) is set, this is a run of identical
+    // pixels. Read one and write it multiple times. Otherwise, it's a run of
+    // different pixels.
+    NSUInteger numPixels = size.height * size.width;
+    for (NSUInteger numPixelsWritten = 0; numPixelsWritten < numPixels; ) {
+        uint8_t runLength = [data readUInt8] + 1;
+        if (runLength & 0x80) {
+            runLength ^= 0x80; // Clear MSB
+            uint32_t pixel = [self readAndCorrectPixelFromData:data];
+            for (NSUInteger pixelIndex = 0; pixelIndex < runLength; pixelIndex++) {
+                [pixelData writeUInt32:pixel];
                 numPixelsWritten++;
             }
         } else {
-            // Most significant bit is not set - read many pixel and write once each
-            pixelCount += 1;
-            for (int pixel = 0; pixel < pixelCount; pixel++) {
-                uint8_t blue = [data readUInt8];
-                uint8_t green = [data readUInt8];
-                uint8_t red = [data readUInt8];
-                [pixelData writeUInt8:red];
-                [pixelData writeUInt8:green];
-                [pixelData writeUInt8:blue];
-                [pixelData writeUInt8:1];
+            for (NSUInteger pixel = 0; pixel < runLength; pixel++) {
+                [pixelData writeUInt32:[self readAndCorrectPixelFromData:data]];
                 numPixelsWritten++;
             }
         }
     }
-    
+
+    // Now the image is uncompressed but upside down. Rewrite the image, row by
+    // row.
     NSMutableData *flippedImage = [NSMutableData data];
-    for (int row = size.height - 1; row >= 0; row--) {
+    for (NSInteger row = size.height - 1; row >= 0; row--) {
         NSData *rowData = [pixelData subdataWithRange:NSMakeRange(row * size.width * 4, size.width * 4)];
         [flippedImage appendData:rowData];
     }
     
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
-    CGDataProviderRef dataProvider = CGDataProviderCreateWithData(NULL, flippedImage.bytes, flippedImage.length, NULL);
+    CGDataProviderRef dataProvider = CGDataProviderCreateWithData(NULL, [flippedImage bytes], [flippedImage length], NULL);
     CGImageRef cgimage = CGImageCreate(size.width, size.height, 8, 32, 4 * size.width, colorspace,
                                        0, dataProvider, NULL, true, kCGRenderingIntentDefault);
     CGColorSpaceRelease(colorspace);
@@ -77,6 +69,15 @@
     CGImageRelease(cgimage);
     
     return self;
+}
+
+// Targa stores pixels as BGR. Reorder as RGBA.
+- (uint32_t)readAndCorrectPixelFromData:(NSMutableData *)data
+{
+    uint8_t blue = [data readUInt8];
+    uint8_t green = [data readUInt8];
+    uint8_t red = [data readUInt8];
+    return red << 24 | blue << 16 | green << 8 | 1;
 }
 
 @end

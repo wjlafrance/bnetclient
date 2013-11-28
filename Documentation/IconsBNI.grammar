@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ufwb version="1.6">
+    <grammar name="BNI grammar" start="id:4" author="William LaFrance" email="admin@wjlafrance.net" fileextension="bni">
+        <description>Grammar for BNI files</description>
+        <structure name="BNI file" id="4" encoding="ISO_8859-1:1987" endian="little" signed="no">
+            <number name="Header Size" id="8" type="integer" length="4" endian="little"/>
+            <number name="BNI Version" id="9" type="integer" length="2" endian="little"/>
+            <number name="Alignment" id="10" type="integer" length="2" endian="little"/>
+            <number name="Icon Count" id="16" type="integer" length="4"/>
+            <offset name="Targa Offset" id="49" length="4" references="id:29" follownullreference="no"/>
+            <structref name="Icon Description" id="26" repeatmin="20" repeatmax="20" structure="id:17">
+                <description>Set min and max to value of &quot;Icon Count&quot;</description>
+            </structref>
+            <structref name="Targa Image" id="52" structure="id:29"/>
+        </structure>
+        <structure name="Icon Description" id="17" length="0" encoding="ISO_8859-1:1987" endian="little" signed="no">
+            <number name="Flags" id="19" type="integer" length="4" endian="little"/>
+            <number name="Width" id="20" type="integer" length="4" endian="little"/>
+            <number name="Height" id="21" type="integer" length="4" endian="little"/>
+            <string name="Client Code" mustmatch="yes" id="27" repeatmin="0" repeatmax="-1" type="fixed-length" length="4">
+                <fixedvalues>
+                    <fixedvalue name="Chat" value="TAHC"/>
+                    <fixedvalue name="Diablo Shareware" value="RHSD"/>
+                    <fixedvalue name="Diablo" value="LTRD"/>
+                    <fixedvalue name="StarCraft" value="RATS"/>
+                    <fixedvalue name="StarCraft Japan" value="RTSJ"/>
+                    <fixedvalue name="StarCraft Brood War" value="PXES"/>
+                    <fixedvalue name="WarCraft II" value="NB2W"/>
+                    <fixedvalue name="Diablo II" value="VD2D"/>
+                    <fixedvalue name="Diablo II LOD" value="PX2D"/>
+                    <fixedvalue name="WarCraft III" value="3RAW"/>
+                    <fixedvalue name="WarCraft III TFT" value="PX3W"/>
+                    <fixedvalue name="StarCraft Shareware" value="RHSS"/>
+                </fixedvalues>
+            </string>
+            <number name="Client Code Terminator" id="28" type="integer" length="4" minval="0" maxval="0"/>
+        </structure>
+        <structure name="Targa Image" id="29" encoding="ISO_8859-1:1987" endian="big" signed="no">
+            <number name="Unknown 1" id="31" type="integer" length="1"/>
+            <number name="Color Map Type (Ignored)" id="32" type="integer" length="1"/>
+            <number name="Unknown 2" id="33" type="integer" length="1"/>
+            <number name="Color Map Data (Ignored)" id="34" type="integer" length="5"/>
+            <number name="X Origin" id="39" type="integer" length="2" endian="little"/>
+            <number name="Y Origin" id="40" type="integer" length="2" endian="little"/>
+            <number name="Width" id="43" type="integer" length="2" endian="little"/>
+            <number name="Height" id="44" type="integer" length="2" endian="little"/>
+            <number name="Unknown 3" id="45" type="integer" length="1" endian="little"/>
+            <number name="Unknown 4" id="46" type="integer" length="1" endian="little"/>
+            <binary name="Image Data" id="51" length="remaining"/>
+        </structure>
+    </grammar>
+</ufwb>
