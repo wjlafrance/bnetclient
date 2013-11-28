@@ -1,0 +1,24 @@
+//
+// Prefix header for all source files of the 'BnetClient' target in the 'BnetClient' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_6_0
+#warning "This project uses features only available in iOS SDK 6.0 and later."
+#endif
+
+#ifdef __OBJC__
+
+#import <objc/runtime.h>
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+
+#import <NSLogger/LoggerClient.h>
+#import <CocoaAsyncSocket/AsyncSocket.h>
+
+#endif
+
+#define ATTR_PURE __attribute__((pure))
+#define ATTR_CONST __attribute__((const))
