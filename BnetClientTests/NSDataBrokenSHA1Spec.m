@@ -28,7 +28,7 @@ describe(@"NSData+BrokenSHA1", ^{
         });
 
     });
-
+    
 });
 
 SPEC_END

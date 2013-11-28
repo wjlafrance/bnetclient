@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3D07C5741847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5721847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m */; };
 		3D07C5791847B9510073B0A5 /* XSha1Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5781847B9510073B0A5 /* XSha1Spec.m */; };
-		3D07C57B1847CB9D0073B0A5 /* NSDataBrokenSHA1Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C57A1847CB9D0073B0A5 /* NSDataBrokenSHA1Spec.m */; };
+		3D07C5831847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5821847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m */; };
 		3D4207FB1791CF03001BB6C7 /* BNCColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4207FA1791CF03001BB6C7 /* BNCColorManager.m */; };
 		3D4207FF1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4207FE1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.m */; };
 		3D4208031791E3C1001BB6C7 /* UIImage+TargaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4208021791E3C1001BB6C7 /* UIImage+TargaData.m */; };
@@ -79,7 +79,7 @@
 		3D07C5711847B8F50073B0A5 /* BnetClientTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BnetClientTests-Prefix.pch"; path = "BnetClientTests/BnetClientTests-Prefix.pch"; sourceTree = "<group>"; };
 		3D07C5721847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSMutableDataPacketBufferSpec.m; path = BnetClientTests/NSMutableDataPacketBufferSpec.m; sourceTree = "<group>"; };
 		3D07C5781847B9510073B0A5 /* XSha1Spec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSha1Spec.m; sourceTree = "<group>"; };
-		3D07C57A1847CB9D0073B0A5 /* NSDataBrokenSHA1Spec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataBrokenSHA1Spec.m; sourceTree = "<group>"; };
+		3D07C5821847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDataBrokenSHA1Spec.m; path = BnetClientTests/NSDataBrokenSHA1Spec.m; sourceTree = "<group>"; };
 		3D4207F91791CF03001BB6C7 /* BNCColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCColorManager.h; sourceTree = "<group>"; };
 		3D4207FA1791CF03001BB6C7 /* BNCColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCColorManager.m; sourceTree = "<group>"; };
 		3D4207FD1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCPacketSidCreateAccount2.h; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				3D07C5721847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m */,
-				3D07C57A1847CB9D0073B0A5 /* NSDataBrokenSHA1Spec.m */,
+				3D07C5821847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -582,7 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D07C57B1847CB9D0073B0A5 /* NSDataBrokenSHA1Spec.m in Sources */,
+				3D07C5831847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m in Sources */,
 				3D07C5791847B9510073B0A5 /* XSha1Spec.m in Sources */,
 				3D07C5741847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m in Sources */,
 			);
