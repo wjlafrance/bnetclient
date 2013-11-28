@@ -11,12 +11,14 @@
 }
 
 - (uint8_t)readUInt8 { POP_INT(uint8_t) }
-
 - (uint16_t)readUInt16 { POP_INT(uint16_t) }
-
 - (uint32_t)readUInt32 { POP_INT(uint32_t) }
-
 - (uint64_t)readUInt64 { POP_INT(uint64_t) }
+
+- (void)writeUInt8:(uint8_t)value { PUSH_INT }
+- (void)writeUInt16:(uint16_t)value { PUSH_INT }
+- (void)writeUInt32:(uint32_t)value { PUSH_INT }
+- (void)writeUInt64:(uint64_t)value { PUSH_INT }
 
 - (NSString *)readString
 {
@@ -32,26 +34,6 @@
     str[length] = 0;
     [self removeBytes:length];
     return [NSString stringWithCString:str encoding:NSASCIIStringEncoding];
-}
-
-- (void)writeUInt8:(uint8_t)value
-{
-    [self appendBytes:&value length:sizeof(value)];
-}
-
-- (void)writeUInt16:(uint16_t)value
-{
-    [self appendBytes:&value length:sizeof(value)];
-}
-
-- (void)writeUInt32:(uint32_t)value
-{
-    [self appendBytes:&value length:sizeof(value)];
-}
-
-- (void)writeUInt64:(uint64_t)value
-{
-    [self appendBytes:&value length:sizeof(value)];
 }
 
 - (void)writeString:(NSString *)string
@@ -71,7 +53,7 @@
  * uint8  Packet ID
  * uint16 Length including header
  */
-- (instancetype)buildBncsPacketWithID:(BattleNetPacketIdentifier)packetId
+- (instancetype)buildBncsPacketWithID:(BattleNetPacketIdentifier)packetId ATTR_PURE
 {
     NSMutableData *bncsPacket = [[NSMutableData alloc] initWithCapacity:self.length + 4];
     [bncsPacket writeUInt8:0xFF];
@@ -86,7 +68,7 @@
  * uint16 Length including header
  * uint8  Packet ID
  */
-- (instancetype)buildBnlsPacketWithID:(BnlsPacketIdentifier)packetId
+- (instancetype)buildBnlsPacketWithID:(BnlsPacketIdentifier)packetId ATTR_PURE
 {
     NSMutableData *bnlsPacket = [[NSMutableData alloc] initWithCapacity:self.length + 3];
     [bnlsPacket writeUInt16:self.length + 3];
@@ -95,7 +77,7 @@
     return bnlsPacket;
 }
 
-- (instancetype)buildBnftpPacket
+- (instancetype)buildBnftpPacket ATTR_PURE
 {
     NSMutableData *bnftpPacket = [[NSMutableData alloc] initWithCapacity:self.length + 4];
     [bnftpPacket writeUInt16:self.length + 4];

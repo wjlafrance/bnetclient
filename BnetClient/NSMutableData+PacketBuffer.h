@@ -16,8 +16,8 @@
 - (void)writeString:(NSString *)string;
 - (void)writeStringWithoutNullTerminator:(NSString *)string;
 
-- (NSMutableData *)buildBncsPacketWithID:(BattleNetPacketIdentifier)packetId;
-- (NSMutableData *)buildBnlsPacketWithID:(BnlsPacketIdentifier)packetId;
-- (NSMutableData *)buildBnftpPacket;
+- (NSMutableData *)buildBncsPacketWithID:(BattleNetPacketIdentifier)packetId ATTR_PURE;
+- (NSMutableData *)buildBnlsPacketWithID:(BnlsPacketIdentifier)packetId ATTR_PURE;
+- (NSMutableData *)buildBnftpPacket ATTR_PURE;
 
 @end
