@@ -14,11 +14,10 @@
 @interface BNCChatViewController () <BNCChatConnectionDelegate, BattleNetFileTransferProtocolDelegate>
 
 @property (weak) IBOutlet UITextView  *chatBox;
-@property (weak) IBOutlet UILabel     *channelLabel;
 @property (weak) IBOutlet UITableView *channelList;
 @property (weak) IBOutlet UITextField *textField;
 
-@property (weak)  IBOutlet NSLayoutConstraint *textViewBottomSpaceConstraint;
+@property (weak) IBOutlet NSLayoutConstraint *textViewBottomSpaceConstraint;
 
 @property (strong) BNCChatConnection *connection;
 @property (strong) BNCChannelModel *channel;
@@ -48,8 +47,6 @@
                                            selector:@selector(keyboardWillHide:)
                                                name:UIKeyboardWillHideNotification
                                              object:nil];
-
-    [self.view addSubview:[[UIImageView alloc] initWithImage:[self.icons imageForFlags:0 client:@"W2BN"]]];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)__unused toInterfaceOrientation
@@ -75,7 +72,7 @@
     CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat height = MIN(keyboardFrame.size.height, keyboardFrame.size.width);
 
-    self.textViewBottomSpaceConstraint.constant = 50 + height;
+    self.textViewBottomSpaceConstraint.constant += height;
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
     }];
@@ -84,7 +81,10 @@
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     NSTimeInterval animationDuration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    self.textViewBottomSpaceConstraint.constant = 50;
+    CGRect keyboardFrame = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat height = MIN(keyboardFrame.size.height, keyboardFrame.size.width);
+
+    self.textViewBottomSpaceConstraint.constant -= height;
     [UIView animateWithDuration:animationDuration animations:^{
         [self.view layoutIfNeeded];
     }];
@@ -271,7 +271,6 @@
         case EID_CHANNEL:
             self.channel = [BNCChannelModel channelWithName:text];
             [self.channelList reloadData];
-            self.channelLabel.text = self.channel.name;
             [self.chatBox addChat:@[@{
                 kAddChatColorKey: [BNCColorManager successColor],
                 kAddChatTextKey: [NSString stringWithFormat:@"Joined channel %@", self.channel.name]
@@ -287,7 +286,7 @@
 
         case EID_INFO:
             [self.chatBox addChat:@[@{
-                kAddChatColorKey: [BNCColorManager debugColor],
+                kAddChatColorKey: [BNCColorManager informationColor],
                 kAddChatTextKey: text
             }]];
             break;
@@ -332,7 +331,34 @@
     }
 }
 
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)__unused tableView heightForHeaderInSection:(NSInteger)__unused section
+{
+    return 40.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)__unused section
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, tableView.frame.size.width)];
+    label.backgroundColor = [UIColor blackColor];
+    label.textColor = [UIColor whiteColor];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    label.layer.borderWidth = 1.0;
+    label.layer.borderColor = [UIColor grayColor].CGColor;
+
+    label.text = self.channel.name;
+
+    return label;
+}
+
 #pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)__unused tableView
+{
+    return 1;
+}
 
 - (NSInteger)tableView:(UITableView *)__unused tableView numberOfRowsInSection:(NSInteger)__unused section
 {

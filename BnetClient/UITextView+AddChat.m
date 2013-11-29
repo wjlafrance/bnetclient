@@ -4,7 +4,7 @@
 
 @implementation UITextView (AddChat)
 
-- (UIFont *)chatFont __attribute__((const))
+- (UIFont *)chatFont ATTR_CONST
 {
     static UIFont *chatFont;
     static dispatch_once_t onceToken;

@@ -6,6 +6,8 @@
 
 + (UIColor *)channelStatusColor ATTR_PURE;
 
++ (UIColor *)informationColor ATTR_PURE;
+
 + (UIColor *)errorColor ATTR_PURE;
 
 + (UIColor *)debugColor ATTR_PURE;

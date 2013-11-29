@@ -1,3 +1,3 @@
-@interface BNCChatViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource>
+@interface BNCChatViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end
