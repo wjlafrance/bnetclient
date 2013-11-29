@@ -11,12 +11,12 @@ The purpose of this project is to maintain a working example of a chat client wr
 - Login and chat as Diablo II.
 - Remote CheckRevision calculation using BNLS.
 - Download files using [Battle.net File Transfer Protocol](http://www.bnetdocs.org/?op=doc&did=5).
+- Display user icons using downloaded Icons.bni file.
 
 ## Uncomplete features
 
 - Login as all legacy (pre WarCraft III) clients.
 - Hashing CD-Keys locally.
-- Display user icons using Icons.bni file. (See `BNCIconsBNI`, `UIImage+TargaData`).
 
 ## Architecture
 
