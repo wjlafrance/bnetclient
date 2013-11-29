@@ -111,6 +111,7 @@
                   didDisconnectFromService:BNLS
                                  withError:[err description]];
     }
+
 }
 
 - (void)connectBncs

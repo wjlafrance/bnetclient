@@ -86,12 +86,14 @@
 
 - (NSString *)clientForUserAtIndex:(NSUInteger)index ATTR_PURE
 {
-    return [self.users[index] client];
+    BNCChannelUser *user = self.users[index];
+    return user.client;
 }
 
 - (uint32_t)flagsForUserAtIndex:(NSUInteger)index ATTR_PURE
 {
-    return [self.users[index] flags];
+    BNCChannelUser *user = self.users[index];
+    return user.flags;
 }
 
 @end
