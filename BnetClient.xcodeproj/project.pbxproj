@@ -14,6 +14,10 @@
 		3D07C5881847E20E0073B0A5 /* CALayerNibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5871847E20E0073B0A5 /* CALayerNibConfiguration.m */; };
 		3D07C58C1847FC470073B0A5 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C58B1847FC470073B0A5 /* UIImage+Crop.m */; };
 		3D07C58E18480CC40073B0A5 /* BNCIconsBniSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C58D18480CC40073B0A5 /* BNCIconsBniSpec.m */; };
+		3D07C5911848104C0073B0A5 /* BNCChannelUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5901848104C0073B0A5 /* BNCChannelUserCell.m */; };
+		3D07C594184810FC0073B0A5 /* BNCChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C593184810FC0073B0A5 /* BNCChannelModel.m */; };
+		3D07C5971848169C0073B0A5 /* NSString+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5961848169C0073B0A5 /* NSString+Reverse.m */; };
+		3D07C599184817200073B0A5 /* NSStringReverseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C598184817200073B0A5 /* NSStringReverseSpec.m */; };
 		3D4207FB1791CF03001BB6C7 /* BNCColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4207FA1791CF03001BB6C7 /* BNCColorManager.m */; };
 		3D4207FF1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4207FE1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.m */; };
 		3D4208031791E3C1001BB6C7 /* UIImage+TargaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4208021791E3C1001BB6C7 /* UIImage+TargaData.m */; };
@@ -90,6 +94,13 @@
 		3D07C58A1847FC470073B0A5 /* UIImage+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
 		3D07C58B1847FC470073B0A5 /* UIImage+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
 		3D07C58D18480CC40073B0A5 /* BNCIconsBniSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCIconsBniSpec.m; sourceTree = "<group>"; };
+		3D07C58F1848104C0073B0A5 /* BNCChannelUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCChannelUserCell.h; sourceTree = "<group>"; };
+		3D07C5901848104C0073B0A5 /* BNCChannelUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCChannelUserCell.m; sourceTree = "<group>"; };
+		3D07C592184810FC0073B0A5 /* BNCChannelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCChannelModel.h; sourceTree = "<group>"; };
+		3D07C593184810FC0073B0A5 /* BNCChannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCChannelModel.m; sourceTree = "<group>"; };
+		3D07C5951848169C0073B0A5 /* NSString+Reverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Reverse.h"; sourceTree = "<group>"; };
+		3D07C5961848169C0073B0A5 /* NSString+Reverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Reverse.m"; sourceTree = "<group>"; };
+		3D07C598184817200073B0A5 /* NSStringReverseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringReverseSpec.m; sourceTree = "<group>"; };
 		3D4207F91791CF03001BB6C7 /* BNCColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCColorManager.h; sourceTree = "<group>"; };
 		3D4207FA1791CF03001BB6C7 /* BNCColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCColorManager.m; sourceTree = "<group>"; };
 		3D4207FD1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCPacketSidCreateAccount2.h; sourceTree = "<group>"; };
@@ -239,6 +250,7 @@
 				3D07C5721847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m */,
 				3D07C5821847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m */,
 				3D07C5871847E20E0073B0A5 /* CALayerNibConfiguration.m */,
+				3D07C598184817200073B0A5 /* NSStringReverseSpec.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -340,6 +352,8 @@
 				3D5B0AE01688DAE70028C6BA /* BNCChatViewController.m */,
 				3D4207F91791CF03001BB6C7 /* BNCColorManager.h */,
 				3D4207FA1791CF03001BB6C7 /* BNCColorManager.m */,
+				3D07C58F1848104C0073B0A5 /* BNCChannelUserCell.h */,
+				3D07C5901848104C0073B0A5 /* BNCChannelUserCell.m */,
 				3D5B0B1B1689160E0028C6BA /* BattleNet */,
 				3D5B0B1A168915FF0028C6BA /* Categories */,
 				3D5B0ACB1688DAE70028C6BA /* Supporting Files */,
@@ -377,6 +391,8 @@
 				3D07C5851847E18E0073B0A5 /* CALayer+NibConfiguration.m */,
 				3D07C58A1847FC470073B0A5 /* UIImage+Crop.h */,
 				3D07C58B1847FC470073B0A5 /* UIImage+Crop.m */,
+				3D07C5951848169C0073B0A5 /* NSString+Reverse.h */,
+				3D07C5961848169C0073B0A5 /* NSString+Reverse.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -398,6 +414,8 @@
 				3D66D4B0168A103C00BA08E1 /* Products */,
 				3DF264B216A48F9000ED7515 /* WJLRuntimeUtils.h */,
 				3DF264B316A48F9000ED7515 /* WJLRuntimeUtils.m */,
+				3D07C592184810FC0073B0A5 /* BNCChannelModel.h */,
+				3D07C593184810FC0073B0A5 /* BNCChannelModel.m */,
 			);
 			name = BattleNet;
 			sourceTree = "<group>";
@@ -570,11 +588,13 @@
 				3D4208031791E3C1001BB6C7 /* UIImage+TargaData.m in Sources */,
 				3D66D4B9168A10A300BA08E1 /* BattleNetProductWarCraft2.m in Sources */,
 				3D66D4BC168A10B200BA08E1 /* BattleNetProductDiablo2.m in Sources */,
+				3D07C5971848169C0073B0A5 /* NSString+Reverse.m in Sources */,
 				3D66D4BF168A10C300BA08E1 /* BattleNetProductDiablo2Expansion.m in Sources */,
 				3D66D4C2168A10CD00BA08E1 /* BattleNetProductWarCraft3.m in Sources */,
 				3D66D4C5168A10D900BA08E1 /* BattleNetProductWarCraft3Expansion.m in Sources */,
 				3D66D4CF168A2B5400BA08E1 /* BNCPacketBnlsNull.m in Sources */,
 				3D66D4D2168A3BDC00BA08E1 /* BNCPacketBnlsVersionCheckEx2.m in Sources */,
+				3D07C594184810FC0073B0A5 /* BNCChannelModel.m in Sources */,
 				3D66D4D5168A3EC300BA08E1 /* BNCPacketBnlsCdkey.m in Sources */,
 				3D66D4D8168A496E00BA08E1 /* BNCPacketBnlsHashData.m in Sources */,
 				3D66D4DB168A4D1300BA08E1 /* BNCPacketSidLogonResponse2.m in Sources */,
@@ -588,6 +608,7 @@
 				3D07C5861847E18E0073B0A5 /* CALayer+NibConfiguration.m in Sources */,
 				3D44EDC41693AEF800B0E45F /* BNCPacketSidGetChannelList.m in Sources */,
 				3D8C6E0D1695004D0040B3C4 /* xsha1.c in Sources */,
+				3D07C5911848104C0073B0A5 /* BNCChannelUserCell.m in Sources */,
 				3D8CA48E169544170011B8BD /* NSData+BrokenSHA1.m in Sources */,
 				3D4207FB1791CF03001BB6C7 /* BNCColorManager.m in Sources */,
 				3D42330516957548002AA7BE /* BNCFileTransferConnection.m in Sources */,
@@ -603,6 +624,7 @@
 				3D07C5831847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m in Sources */,
 				3D07C58E18480CC40073B0A5 /* BNCIconsBniSpec.m in Sources */,
 				3D07C5791847B9510073B0A5 /* XSha1Spec.m in Sources */,
+				3D07C599184817200073B0A5 /* NSStringReverseSpec.m in Sources */,
 				3D07C5881847E20E0073B0A5 /* CALayerNibConfiguration.m in Sources */,
 				3D07C5741847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m in Sources */,
 			);

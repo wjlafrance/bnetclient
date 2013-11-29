@@ -60,21 +60,43 @@
                                     <constraint firstAttribute="width" constant="205" id="hyk-i0-eNk"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserCell" textLabel="km4-Lh-jzl" style="IBUITableViewCellStyleDefault" id="Fbr-8l-FZq">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserCell" id="Fbr-8l-FZq" customClass="BNCChannelUserCell">
                                         <rect key="frame" x="0.0" y="22" width="205" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fbr-8l-FZq" id="SET-9e-WIO">
                                             <rect key="frame" x="0.0" y="0.0" width="205" height="29"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="*Username[CLaN]@Realm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="km4-Lh-jzl">
-                                                    <rect key="frame" x="15" y="0.0" width="175" height="29"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zN9-wr-s5X">
+                                                    <rect key="frame" x="10" y="1" width="56" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="bsv-uS-b1j"/>
+                                                        <constraint firstAttribute="height" constant="28" id="oNC-Pq-xU8"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*User[ClaN]@Realm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9w-Ci-VfU">
+                                                    <rect key="frame" x="74" y="4" width="131" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Z9w-Ci-VfU" secondAttribute="trailing" id="0A4-b1-ngE"/>
+                                                <constraint firstAttribute="centerY" secondItem="zN9-wr-s5X" secondAttribute="centerY" id="0Zf-yb-PzY"/>
+                                                <constraint firstItem="Z9w-Ci-VfU" firstAttribute="leading" secondItem="zN9-wr-s5X" secondAttribute="trailing" constant="8" id="Glk-w6-jOf"/>
+                                                <constraint firstItem="zN9-wr-s5X" firstAttribute="leading" secondItem="SET-9e-WIO" secondAttribute="leading" constant="10" id="Gu9-Pb-2es"/>
+                                                <constraint firstItem="Z9w-Ci-VfU" firstAttribute="top" secondItem="SET-9e-WIO" secondAttribute="top" constant="4" id="brQ-1o-L9A"/>
+                                                <constraint firstAttribute="bottom" secondItem="Z9w-Ci-VfU" secondAttribute="bottom" constant="4" id="hIg-1f-AP9"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="iconView" destination="zN9-wr-s5X" id="8v3-Qr-0XV"/>
+                                            <outlet property="usernameLabel" destination="Z9w-Ci-VfU" id="TRB-O5-CDj"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <userDefinedRuntimeAttributes>
@@ -120,6 +142,7 @@
                             <constraint firstAttribute="bottom" secondItem="IIg-iC-K1m" secondAttribute="bottom" constant="50" id="zbt-St-5ma"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="channelLabel" destination="rmC-TD-hNQ" id="hgm-Q9-lMH"/>
                         <outlet property="channelList" destination="Q8H-7a-t12" id="fo1-9m-9CO"/>

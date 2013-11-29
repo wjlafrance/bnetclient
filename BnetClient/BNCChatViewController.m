@@ -1,23 +1,27 @@
 #import "BNCChatViewController.h"
 
 #import "BNCChatConnection.h"
-#import "UITextView+AddChat.h"
+#import "BNCFileTransferConnection.h"
+#import "BNCChatConnection.h"
 #import "BNCColorManager.h"
 #import "BNCIconsBni.h"
+#import "BNCChannelUserCell.h"
+#import "BNCChannelModel.h"
 
-@interface BNCChatViewController ()
+#import "UITextView+AddChat.h"
+#import "NSString+Reverse.h"
 
-@property (weak, nonatomic) IBOutlet UITextView  *chatBox;
-@property (weak, nonatomic) IBOutlet UILabel     *channelLabel;
-@property (weak, nonatomic) IBOutlet UITableView *channelList;
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+@interface BNCChatViewController () <BNCChatConnectionDelegate, BattleNetFileTransferProtocolDelegate>
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomSpaceConstraint;
+@property (weak) IBOutlet UITextView  *chatBox;
+@property (weak) IBOutlet UILabel     *channelLabel;
+@property (weak) IBOutlet UITableView *channelList;
+@property (weak) IBOutlet UITextField *textField;
 
-@property (strong) NSMutableArray *channelUsers;
+@property (weak)  IBOutlet NSLayoutConstraint *textViewBottomSpaceConstraint;
 
 @property (strong) BNCChatConnection *connection;
-
+@property (strong) BNCChannelModel *channel;
 @property (strong) BNCIconsBni *icons;
 
 @end
@@ -29,9 +33,9 @@
     self.connection = [[BNCChatConnection alloc] initWithDelegate:self];
 
     BNCFileTransferConnection *bnftp = [BNCFileTransferConnection new];
+    bnftp.delegate = self;
     NSString *downloadPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"icons.bni"];
     [bnftp downloadFile:@"icons.bni" toPath:downloadPath];
-
 }
 
 - (void)viewDidAppear:(BOOL)__unused animated
@@ -232,12 +236,12 @@
 {
     switch (event) {
         case EID_SHOWUSER:
-            [self.channelUsers addObject:username];
+            [self.channel addUserWithName:username client:[[text substringToIndex:4] stringByReversingString] flags:flags];
             [self.channelList reloadData];
             break;
 
         case EID_JOIN:
-            [self.channelUsers addObject:username];
+            [self.channel addUserWithName:username client:[[text substringToIndex:4] stringByReversingString] flags:flags];
             [self.channelList reloadData];
             [self.chatBox addChat:@[@{
                 kAddChatColorKey: [BNCColorManager successColor],
@@ -246,7 +250,7 @@
             break;
 
         case EID_LEAVE:
-            [self.channelUsers removeObject:username];
+            [self.channel removeUser:username];
             [self.channelList reloadData];
             [self.chatBox addChat:@[@{
                 kAddChatColorKey: [BNCColorManager channelStatusColor],
@@ -265,12 +269,12 @@
             break;
 
         case EID_CHANNEL:
-            self.channelUsers = [NSMutableArray new];
+            self.channel = [BNCChannelModel channelWithName:text];
             [self.channelList reloadData];
-            self.channelLabel.text = text;
+            self.channelLabel.text = self.channel.name;
             [self.chatBox addChat:@[@{
                 kAddChatColorKey: [BNCColorManager successColor],
-                kAddChatTextKey: [NSString stringWithFormat:@"Joined channel %@", text]
+                kAddChatTextKey: [NSString stringWithFormat:@"Joined channel %@", self.channel.name]
             }]];
             break;
 
@@ -324,6 +328,7 @@
 
     if ([path hasSuffix:@"icons.bni"]) {
         self.icons = [[BNCIconsBni alloc] initWithPath:bnftp.path];
+        [self.channelList reloadData];
     }
 }
 
@@ -331,13 +336,15 @@
 
 - (NSInteger)tableView:(UITableView *)__unused tableView numberOfRowsInSection:(NSInteger)__unused section
 {
-    return [self.channelUsers count];
+    return [self.channel numberOfUsers];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
-    cell.textLabel.text = self.channelUsers[indexPath.row];
+    BNCChannelUserCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
+    cell.usernameLabel.text = [self.channel userAtIndex:indexPath.row];
+    cell.iconView.image = [self.icons imageForFlags:[self.channel flagsForUserAtIndex:indexPath.row]
+                                             client:[self.channel clientForUserAtIndex:indexPath.row]];
     return cell;
 }
 

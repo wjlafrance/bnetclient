@@ -1,8 +1,3 @@
-#import "BNCChatConnection.h"
-#import "BNCFileTransferConnection.h"
-
-@interface BNCChatViewController : UIViewController
-    <BNCChatConnectionDelegate, BattleNetFileTransferProtocolDelegate,
-    UITextFieldDelegate, UITableViewDataSource>
+@interface BNCChatViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource>
 
 @end
