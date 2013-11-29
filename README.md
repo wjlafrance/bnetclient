@@ -13,10 +13,12 @@ The purpose of this project is to maintain a working example of a chat client wr
 - Download files using [Battle.net File Transfer Protocol](http://www.bnetdocs.org/?op=doc&did=5).
 - Display user icons using downloaded Icons.bni file.
 
-## Uncomplete features
+## Planned features
 
+- In-app settings screen
 - Login as all legacy (pre WarCraft III) clients.
 - Hashing CD-Keys locally.
+- (Optionally) displaying the advertisements displayed in official clients
 
 ## Architecture
 
