@@ -31,3 +31,7 @@ All packet classes derive from `BNCPacket`. Rather than maintaining a list of pa
 - [BnetDocs](http://bhfiles.com/files/Battle.net/bnetdocs/content.html) and [BnetDocs Redux](http://www.bnetdocs.org/) - The best documetation of the Battle.net protocol.
 - [Ron Bowes (iago[x86])](http://blog.skullsecurity.org/) - Research into the "new login system" (NLS) used for WarCraft III, original author of [JavaOp](http://www.javaop.com/), and a great mentor.
 - [Robert Paveza (MyndFyre[x86])](http://robpaveza.net/) - Author of [JinxBot](https://code.google.com/p/jinxbot/) and it's underlying libraries, and another great mentor.
+
+## License
+
+This work is licensed under the Creative Commons Attribution 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
