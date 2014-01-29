@@ -1,8 +1,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- * A simple Objective-C wrapper around BSD Sockets for OS X. I haven't tested
- * this on iOS.
+ * A simple Objective-C wrapper around BSD Sockets for OS X and iOS.
  */
 @interface WJLSocket : NSObject
 
