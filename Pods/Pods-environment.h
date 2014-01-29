@@ -6,12 +6,6 @@
 // project.
 
 
-// CocoaAsyncSocket
-#define COCOAPODS_POD_AVAILABLE_CocoaAsyncSocket
-#define COCOAPODS_VERSION_MAJOR_CocoaAsyncSocket 0
-#define COCOAPODS_VERSION_MINOR_CocoaAsyncSocket 0
-#define COCOAPODS_VERSION_PATCH_CocoaAsyncSocket 1
-
 // Kiwi/ARC
 #define COCOAPODS_POD_AVAILABLE_Kiwi_ARC
 #define COCOAPODS_VERSION_MAJOR_Kiwi_ARC 2

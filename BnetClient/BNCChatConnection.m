@@ -5,11 +5,12 @@
 #import "BattleNetProduct.h"
 #import "BNCPacketSidAuthInfo.h"
 #import "BNCPacketBnlsRequestVersionByte.h"
+#import "WJLSocket.h"
 
-@interface BNCChatConnection () <AsyncSocketDelegate>
+@interface BNCChatConnection ()
 
-@property (strong) AsyncSocket *bnlsSocket;
-@property (strong) AsyncSocket *bncsSocket;
+@property (strong) WJLSocket *bnlsSocket;
+@property (strong) WJLSocket *bncsSocket;
 
 @property (readwrite, copy)   NSString *username;
 
@@ -32,9 +33,7 @@
     self = [super init];
     if (self) {
         _delegate = delegate;
-        _bnlsSocket = [[AsyncSocket alloc] initWithDelegate:self];
-        _bncsSocket = [[AsyncSocket alloc] initWithDelegate:self];
-        
+
         if ([self checkSettingsValidity]) {
             [self connectBnls];
         }
@@ -105,97 +104,112 @@
 - (void)connectBnls
 {
     NSString *server = [[NSUserDefaults standardUserDefaults] valueForKey:@"bnls_server"];
-    NSError *err;
-    if (![self.bnlsSocket connectToHost:server onPort:9367 error:&err]) {
-        [self.delegate battleNetConnection:self
-                  didDisconnectFromService:BNLS
-                                 withError:[err description]];
-    }
+    self.bnlsSocket = [WJLSocket socketWithHostname:server port:9367];
+    self.bnlsSocket.debug = YES;
+    [self.bnlsSocket connect:^(BOOL success) {
+        if (success) {
+            [self.delegate battleNetConnection:self didConnectToService:BNLS];
+
+            [self connectBncs];
+
+            [self doBnlsReadLoop];
+        } else {
+            [self.delegate battleNetConnection:self
+                      didDisconnectFromService:BNLS
+                                     withError:nil];
+        }
+    }];
+
+    [self.delegate battleNetConnection:self didBeginConnectingToService:BNLS];
 }
 
 - (void)connectBncs
 {
     NSString *server = [[NSUserDefaults standardUserDefaults] valueForKey:@"bncs_server"];
-    NSError *err;
-    if (![self.bncsSocket connectToHost:server onPort:6112 error:&err]) {
-        [self.delegate battleNetConnection:self
-                  didDisconnectFromService:BNCS
-                                 withError:[err description]];
-    }
-}
+    self.bncsSocket = [WJLSocket socketWithHostname:server port:6112];
+    self.bncsSocket.debug = YES;
+    [self.bncsSocket connect:^(BOOL success) {
+        if (success) {
+            [self.delegate battleNetConnection:self didConnectToService:BNCS];
 
+            NSMutableData *protocolByte = [NSMutableData new];
+            [protocolByte writeUInt8:1];
+            [self sendBncsPacket:protocolByte];
 
-#pragma mark - AsyncSocketDelegate
+            [self.delegate battleNetConnection:self didBeginAuthenticatingClientToService:BNCS];
+            [self sendBnlsPacket:[[BNCPacketBnlsRequestVersionByte new] packet]];
 
-- (void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err
-{
-    [self.delegate battleNetConnection:self
-              didDisconnectFromService:(sock == self.bncsSocket ? BNCS : BNLS)
-                             withError:[err description]];
-}
-
-- (void)onSocketDidDisconnect:(AsyncSocket *)sock
-{
-    [self.delegate battleNetConnection:self
-              didDisconnectFromService:(sock == self.bncsSocket ? BNCS : BNLS)
-                             withError:nil];
-}
-
-- (BOOL)onSocketWillConnect:(AsyncSocket *)sock
-{
-    [self.delegate battleNetConnection:self
-           didBeginConnectingToService:(sock == self.bncsSocket ? BNCS : BNLS)];
-    return YES;
-}
-
-- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)__unused host port:(UInt16)__unused port
-{
-    [self.delegate battleNetConnection:self
-                   didConnectToService:(sock == self.bncsSocket ? BNCS : BNLS)];
-    
-    if (sock == self.bnlsSocket) {
-        [sock readDataToLength:3 withTimeout:-1 tag:-1];
-        [self connectBncs];
-    } else {
-        [sock readDataToLength:4 withTimeout:-1 tag:-1];
-        
-        NSMutableData *protocolByte = [NSMutableData new];
-        [protocolByte writeUInt8:1];
-        [self sendBncsPacket:protocolByte];
-        [self.delegate battleNetConnection:self didBeginAuthenticatingClientToService:BNCS];
-        [self sendBnlsPacket:[[BNCPacketBnlsRequestVersionByte new] packet]];
-    }
-}
-
-- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
-{
-    NSMutableData *packet = [data mutableCopy];
-    if (tag == -1) { // Received packet header -- read remainder of packet and tag with packet ID
-        if (sock == self.bnlsSocket) {
-            uint16_t length = [packet readUInt16];
-            uint8_t packetId = [packet readUInt8];
-            [sock readDataToLength:length - 3 withTimeout:-1 tag:BNLS_IDENTIFIER_BASE + packetId];
-            [sock readDataToLength:3 withTimeout:-1 tag:-1];
+            [self doBncsReadLoop];
         } else {
-            [packet readUInt8]; // skip sanity byte
-            uint8_t packetId = [packet readUInt8];
-            uint16_t length = [packet readUInt16];
-            [sock readDataToLength:length - 4 withTimeout:-1 tag:SID_IDENTIFIER_BASE + packetId];
-            [sock readDataToLength:4 withTimeout:-1 tag:-1];
-            
-            LogMessageCompat(@"Received BNCS packet header %@",
-                             [[BNCPacketManager packetHandlerForIdentifier:SID_IDENTIFIER_BASE + packetId] name]);
+            [self.delegate battleNetConnection:self
+                      didDisconnectFromService:BNCS
+                                     withError:nil];
         }
-    } else { // Received remainder of packet
+    }];
+
+   [self.delegate battleNetConnection:self didBeginConnectingToService:BNCS];
+}
+
+- (void)disconnect
+{
+    self.bnlsSocket = nil;
+    [self.delegate battleNetConnection:self didDisconnectFromService:BNLS withError:nil];
+    self.bncsSocket = nil;
+    [self.delegate battleNetConnection:self didDisconnectFromService:BNCS withError:nil];
+}
+
+- (void)doBnlsReadLoop
+{
+    [self.bnlsSocket readWithLength:3 withHandler:^(NSData *data) {
+        [self onSocket:self.bnlsSocket didReadPacketHeader:data];
+    }];
+}
+
+- (void)doBncsReadLoop
+{
+    [self.bncsSocket readWithLength:4 withHandler:^(NSData *data) {
+        [self onSocket:self.bncsSocket didReadPacketHeader:data];
+    }];
+}
+
+- (void)onSocket:(WJLSocket *)sock didReadPacketHeader:(NSData *)data
+{
+    void (^handlePacket)(int, NSData *) = ^(int tag, NSData *data) {
         BNCPacket *handler = [BNCPacketManager packetHandlerForIdentifier:tag];
-        LogMessageCompat(@"Received BNCS packet body %@:\n%@", [handler name], packet);
+        LogMessageCompat(@"Received packet %@", [handler name]);
+
+        NSMutableData *buffer = [data mutableCopy];
         if (handler) {
-            [self sendBncsPacket:[handler bncsResponseForPacket:packet forBattleNetConnection:self]];
-            [self sendBnlsPacket:[handler bnlsResponseForPacket:packet forBattleNetConnection:self]];
+            [self sendBncsPacket:[handler bncsResponseForPacket:buffer forBattleNetConnection:self]];
+            [self sendBnlsPacket:[handler bnlsResponseForPacket:buffer forBattleNetConnection:self]];
         } else {
             [self debug:[NSString stringWithFormat:@"No handler for 0x%02X.", (int) tag]];
             [self debug:[NSString stringWithFormat:@"Data for 0x%02X: %@", (int) tag, data]];
         }
+    };
+
+    if (!data) {
+        [self.delegate battleNetConnection:self didDisconnectFromService:(sock == self.bncsSocket ? BNCS : BNLS) withError:nil];
+        return;
+    }
+
+    NSMutableData *packet = [data mutableCopy];
+    if (sock == self.bnlsSocket) {
+        uint16_t length = [packet readUInt16];
+        uint8_t packetId = [packet readUInt8];
+        [sock readWithLength:length - 3 withHandler:^(NSData *data) {
+            handlePacket(BNLS_IDENTIFIER_BASE + packetId, data);
+            [self doBnlsReadLoop];
+        }];
+    } else {
+        [packet readUInt8]; // skip sanity byte
+        uint8_t packetId = [packet readUInt8];
+        uint16_t length = [packet readUInt16];
+        [sock readWithLength:length - 4 withHandler:^(NSData *data) {
+            handlePacket(SID_IDENTIFIER_BASE + packetId, data);
+            [self doBncsReadLoop];
+        }];
+
     }
 }
 
@@ -205,16 +219,18 @@
 - (void)sendBncsPacket:(NSData *)data
 {
     if (data) {
-        [self.bncsSocket writeData:data withTimeout:-1 tag:0];
-        LogMessageCompat(@"Sending BNCS packet: %@", data);
+        [self.bncsSocket write:data withHandler:^(BOOL __unused success) {
+            LogMessageCompat(@"Sent BNCS packet: %@", data);
+        }];
     }
 }
 
 - (void)sendBnlsPacket:(NSData *)data
 {
     if (data) {
-        [self.bnlsSocket writeData:data withTimeout:-1 tag:0];
-        LogMessageCompat(@"Sending BNLS packet: %@", data);
+        [self.bnlsSocket write:data withHandler:^(BOOL __unused success) {
+            LogMessageCompat(@"Sent BNLS packet: %@", data);
+        }];
     }
 }
 

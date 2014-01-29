@@ -20,8 +20,7 @@
     if (0 == [packet readUInt32]) {
         [conn.delegate battleNetConnection:conn didFailToAuthenticateClientToService:BNCS
                                  withError:@"BNLS failed version check."];
-        [conn.bncsSocket disconnect];
-        [conn.bnlsSocket disconnect];
+        [conn disconnect];
     }
     
     NSMutableData *response = [NSMutableData new];

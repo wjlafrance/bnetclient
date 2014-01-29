@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D470325189991190056A311 /* WJLSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D470324189991190056A311 /* WJLSocket.m */; };
+		2D4703281899915F0056A311 /* NSData+DebugOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4703271899915F0056A311 /* NSData+DebugOutput.m */; };
 		3D07C5741847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5721847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m */; };
 		3D07C5831847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5821847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m */; };
 		3D07C5861847E18E0073B0A5 /* CALayer+NibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5851847E18E0073B0A5 /* CALayer+NibConfiguration.m */; };
@@ -83,6 +85,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D470323189991190056A311 /* WJLSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJLSocket.h; sourceTree = "<group>"; };
+		2D470324189991190056A311 /* WJLSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJLSocket.m; sourceTree = "<group>"; };
+		2D4703261899915F0056A311 /* NSData+DebugOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+DebugOutput.h"; sourceTree = "<group>"; };
+		2D4703271899915F0056A311 /* NSData+DebugOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+DebugOutput.m"; sourceTree = "<group>"; };
 		3D07C5701847B8F50073B0A5 /* BnetClientTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "BnetClientTests-Info.plist"; path = "BnetClientTests/BnetClientTests-Info.plist"; sourceTree = "<group>"; };
 		3D07C5711847B8F50073B0A5 /* BnetClientTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BnetClientTests-Prefix.pch"; path = "BnetClientTests/BnetClientTests-Prefix.pch"; sourceTree = "<group>"; };
 		3D07C5721847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSMutableDataPacketBufferSpec.m; path = BnetClientTests/NSMutableDataPacketBufferSpec.m; sourceTree = "<group>"; };
@@ -359,6 +365,10 @@
 				3D5B0B1B1689160E0028C6BA /* BattleNet */,
 				3D5B0B1A168915FF0028C6BA /* Categories */,
 				3D5B0ACB1688DAE70028C6BA /* Supporting Files */,
+				2D470323189991190056A311 /* WJLSocket.h */,
+				2D470324189991190056A311 /* WJLSocket.m */,
+				2D4703261899915F0056A311 /* NSData+DebugOutput.h */,
+				2D4703271899915F0056A311 /* NSData+DebugOutput.m */,
 			);
 			path = BnetClient;
 			sourceTree = "<group>";
@@ -598,6 +608,7 @@
 				3D66D4D5168A3EC300BA08E1 /* BNCPacketBnlsCdkey.m in Sources */,
 				3D66D4D8168A496E00BA08E1 /* BNCPacketBnlsHashData.m in Sources */,
 				3D66D4DB168A4D1300BA08E1 /* BNCPacketSidLogonResponse2.m in Sources */,
+				2D470325189991190056A311 /* WJLSocket.m in Sources */,
 				3D66D4DF168A6FCD00BA08E1 /* BNCPacketSidChatEvent.m in Sources */,
 				3D4207FF1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.m in Sources */,
 				3D66D4E2168A76CD00BA08E1 /* BNCPacketSidMessageBox.m in Sources */,
@@ -612,6 +623,7 @@
 				3D8CA48E169544170011B8BD /* NSData+BrokenSHA1.m in Sources */,
 				3D4207FB1791CF03001BB6C7 /* BNCColorManager.m in Sources */,
 				3D42330516957548002AA7BE /* BNCFileTransferConnection.m in Sources */,
+				2D4703281899915F0056A311 /* NSData+DebugOutput.m in Sources */,
 				3D42330816957DC8002AA7BE /* BNCIconsBni.m in Sources */,
 				3DF264B416A48F9000ED7515 /* WJLRuntimeUtils.m in Sources */,
 			);

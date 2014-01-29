@@ -41,13 +41,13 @@ const uint32_t RESPONSE_NAMECONTAINEDTOOMANYPUNCTIONATIONCHARACTERS = 8;
         case RESPONSE_ACCOUNTALREADYEXISTS:
             [conn.delegate battleNetConnection:conn didFailToAuthenticateUserToService:BNCS
                                     withError:@"Couldn't create account -- account already exists."];
-            [conn.bncsSocket disconnect];
+            [conn disconnect];
             return nil;
             
         case RESPONSE_ACCOUNTSTILLBEINGCREATED:
             [conn.delegate battleNetConnection:conn didFailToAuthenticateUserToService:BNCS
                                      withError:@"Account still being created."];
-            [conn.bncsSocket disconnect];
+            [conn disconnect];
             return nil;
             
         case RESPONSE_NAMETOOSHORT:
@@ -59,14 +59,14 @@ const uint32_t RESPONSE_NAMECONTAINEDTOOMANYPUNCTIONATIONCHARACTERS = 8;
             NSString *reason = [NSString stringWithFormat:@"Could not create account because the name is invalid (code %d)."
                                 @"The server suggested \"@%@\".", result, nameSuggestion];
             [conn.delegate battleNetConnection:conn didFailToAuthenticateUserToService:BNCS withError:reason];
-            [conn.bncsSocket disconnect];
+            [conn disconnect];
             return nil;
         }
             
         default: {
             NSString *reason = [NSString stringWithFormat:@"Server gave illegal response to SID_CREATEACCOUNT2: 0x%X", result];
             [conn.delegate battleNetConnection:conn didFailToAuthenticateUserToService:BNCS withError:reason];
-            [conn.bncsSocket disconnect];
+            [conn disconnect];
             return nil;
         }
     }

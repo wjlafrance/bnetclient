@@ -16,7 +16,6 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import <NSLogger/LoggerClient.h>
-#import <CocoaAsyncSocket/AsyncSocket.h>
 
 #endif
 

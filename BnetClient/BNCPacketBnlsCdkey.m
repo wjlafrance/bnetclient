@@ -29,8 +29,7 @@
     if (0 == [packet readUInt32]) {
         [conn.delegate battleNetConnection:conn didFailToAuthenticateClientToService:BNCS
                                  withError:@"BNLS failed to hash CD-Key."];
-        [conn.bncsSocket disconnect];
-        [conn.bnlsSocket disconnect];
+        [conn disconnect];
         return nil;
     }
     conn.clientToken = [packet readUInt32];

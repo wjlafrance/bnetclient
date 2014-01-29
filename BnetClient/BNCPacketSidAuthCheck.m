@@ -83,7 +83,7 @@
             break;
     }
     
-    [conn.bncsSocket disconnect];
+    [conn disconnect];
     return nil;
 }
 

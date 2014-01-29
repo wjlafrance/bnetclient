@@ -26,7 +26,7 @@ typedef NS_ENUM(uint32_t, SID_LOGONRESPONSE2_RESPONSECODE) {
 - (void)receivedFailureResponse:(NSString *)reason forConnection:(BNCChatConnection *)conn
 {
     [conn.delegate battleNetConnection:conn didFailToAuthenticateUserToService:BNCS withError:reason];
-    [conn.bncsSocket disconnect];
+    [conn disconnect];
 }
 
 - (NSData *)bncsResponseForPacket:(NSMutableData *)packet forBattleNetConnection:(BNCChatConnection *)conn

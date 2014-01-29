@@ -8,7 +8,7 @@
 @end
 
 
-@interface BNCFileTransferConnection : NSObject <AsyncSocketDelegate>
+@interface BNCFileTransferConnection : NSObject
 
 @property (weak) id<BattleNetFileTransferProtocolDelegate> delegate;
 @property (strong) NSString *filename;
