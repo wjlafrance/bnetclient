@@ -81,7 +81,7 @@
 
     dispatch_async(_socketQueue, ^{
         if (self.debug) {
-            NSLog(@"C -> S %@:%d (%ld bytes) %@", self.hostname, self.port, (unsigned long) [data length], [data debugOutput]);
+            NSLog(@"C -> S %@:%lu (%ld bytes) %@", self.hostname, (unsigned long) self.port, (unsigned long) [data length], [data debugOutput]);
         }
 
         ssize_t bytesWritten = send(self.socketDescriptor, [data bytes], [data length], 0);
@@ -121,7 +121,7 @@
         free(buffer);
 
         if (success && self.debug && !(flags & MSG_PEEK)) {
-            NSLog(@"S -> C %@:%d (%ld bytes) %@", self.hostname, self.port, (unsigned long)[data length], [data debugOutput]);
+            NSLog(@"S -> C %@:%lu (%ld bytes) %@", self.hostname, (unsigned long) self.port, (unsigned long) [data length], [data debugOutput]);
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
