@@ -35,7 +35,7 @@
         _delegate = delegate;
 
         if ([self checkSettingsValidity]) {
-            [self connectBnls];
+//            [self connectBnls];
         }
     }
     return self;

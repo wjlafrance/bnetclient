@@ -9,17 +9,17 @@
 /* Begin PBXBuildFile section */
 		2D470325189991190056A311 /* WJLSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D470324189991190056A311 /* WJLSocket.m */; };
 		2D4703281899915F0056A311 /* NSData+DebugOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D4703271899915F0056A311 /* NSData+DebugOutput.m */; };
-		3D07C5741847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5721847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m */; };
-		3D07C5831847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5821847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m */; };
+		2D6BF3FF194626F2002478EB /* CALayerNibConfigurationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6BF3FE194626F2002478EB /* CALayerNibConfigurationTest.swift */; };
+		2D78F6AC19462CB500D6B2C0 /* NSDataBrokenSha1Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D78F6AB19462CB500D6B2C0 /* NSDataBrokenSha1Test.m */; };
+		2DBC9FB31946238F0068E6AF /* StringReverseTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBC9FB21946238F0068E6AF /* StringReverseTest.swift */; };
+		2DE0A7AB194629D700B9942A /* XSha1Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DE0A7AA194629D700B9942A /* XSha1Test.m */; };
+		3D07C5741847B8F50073B0A5 /* NSMutableDataPacketBufferTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5721847B8F50073B0A5 /* NSMutableDataPacketBufferTest.m */; };
 		3D07C5861847E18E0073B0A5 /* CALayer+NibConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5851847E18E0073B0A5 /* CALayer+NibConfiguration.m */; };
 		3D07C58C1847FC470073B0A5 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C58B1847FC470073B0A5 /* UIImage+Crop.m */; };
 		3D07C5911848104C0073B0A5 /* BNCChannelUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5901848104C0073B0A5 /* BNCChannelUserCell.m */; };
 		3D07C594184810FC0073B0A5 /* BNCChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C593184810FC0073B0A5 /* BNCChannelModel.m */; };
 		3D07C5971848169C0073B0A5 /* NSString+Reverse.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5961848169C0073B0A5 /* NSString+Reverse.m */; };
-		3D07C5A218490C590073B0A5 /* XSha1Spec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C59B18490B950073B0A5 /* XSha1Spec.m */; };
 		3D07C5A318490C5D0073B0A5 /* BNCIconsBniSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C59A18490B950073B0A5 /* BNCIconsBniSpec.m */; };
-		3D07C5A418490C650073B0A5 /* CALayerNibConfigurationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C5A018490BB40073B0A5 /* CALayerNibConfigurationSpec.m */; };
-		3D07C5A518490C670073B0A5 /* NSStringReverseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07C59E18490BA50073B0A5 /* NSStringReverseSpec.m */; };
 		3D4207FB1791CF03001BB6C7 /* BNCColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4207FA1791CF03001BB6C7 /* BNCColorManager.m */; };
 		3D4207FF1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4207FE1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.m */; };
 		3D4208031791E3C1001BB6C7 /* UIImage+TargaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4208021791E3C1001BB6C7 /* UIImage+TargaData.m */; };
@@ -75,6 +75,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2DBC9FB4194625060068E6AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D5B0AB71688DAE70028C6BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D5B0ABF1688DAE70028C6BA;
+			remoteInfo = BnetClient;
+		};
+		2DBC9FB71946260A0068E6AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D5B0AB71688DAE70028C6BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D5B0ABF1688DAE70028C6BA;
+			remoteInfo = BnetClient;
+		};
 		3D7A6960184701ED006374F8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3D5B0AB71688DAE70028C6BA /* Project object */;
@@ -89,10 +103,14 @@
 		2D470324189991190056A311 /* WJLSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJLSocket.m; sourceTree = "<group>"; };
 		2D4703261899915F0056A311 /* NSData+DebugOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+DebugOutput.h"; sourceTree = "<group>"; };
 		2D4703271899915F0056A311 /* NSData+DebugOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+DebugOutput.m"; sourceTree = "<group>"; };
+		2D6BF3FE194626F2002478EB /* CALayerNibConfigurationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayerNibConfigurationTest.swift; sourceTree = "<group>"; };
+		2D78F6AB19462CB500D6B2C0 /* NSDataBrokenSha1Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataBrokenSha1Test.m; sourceTree = "<group>"; };
+		2DBC9FB11946238E0068E6AF /* BnetClientTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BnetClientTests-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		2DBC9FB21946238F0068E6AF /* StringReverseTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringReverseTest.swift; sourceTree = "<group>"; };
+		2DE0A7AA194629D700B9942A /* XSha1Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSha1Test.m; sourceTree = "<group>"; };
 		3D07C5701847B8F50073B0A5 /* BnetClientTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "BnetClientTests-Info.plist"; path = "BnetClientTests/BnetClientTests-Info.plist"; sourceTree = "<group>"; };
 		3D07C5711847B8F50073B0A5 /* BnetClientTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BnetClientTests-Prefix.pch"; path = "BnetClientTests/BnetClientTests-Prefix.pch"; sourceTree = "<group>"; };
-		3D07C5721847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSMutableDataPacketBufferSpec.m; path = BnetClientTests/NSMutableDataPacketBufferSpec.m; sourceTree = "<group>"; };
-		3D07C5821847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDataBrokenSHA1Spec.m; path = BnetClientTests/NSDataBrokenSHA1Spec.m; sourceTree = "<group>"; };
+		3D07C5721847B8F50073B0A5 /* NSMutableDataPacketBufferTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSMutableDataPacketBufferTest.m; path = BnetClientTests/NSMutableDataPacketBufferTest.m; sourceTree = "<group>"; };
 		3D07C5841847E18E0073B0A5 /* CALayer+NibConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+NibConfiguration.h"; sourceTree = "<group>"; };
 		3D07C5851847E18E0073B0A5 /* CALayer+NibConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+NibConfiguration.m"; sourceTree = "<group>"; };
 		3D07C58A1847FC470073B0A5 /* UIImage+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
@@ -104,9 +122,6 @@
 		3D07C5951848169C0073B0A5 /* NSString+Reverse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Reverse.h"; sourceTree = "<group>"; };
 		3D07C5961848169C0073B0A5 /* NSString+Reverse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Reverse.m"; sourceTree = "<group>"; };
 		3D07C59A18490B950073B0A5 /* BNCIconsBniSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNCIconsBniSpec.m; path = BnetClientTests/BNCIconsBniSpec.m; sourceTree = "<group>"; };
-		3D07C59B18490B950073B0A5 /* XSha1Spec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XSha1Spec.m; path = BnetClientTests/XSha1Spec.m; sourceTree = "<group>"; };
-		3D07C59E18490BA50073B0A5 /* NSStringReverseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSStringReverseSpec.m; path = BnetClientTests/NSStringReverseSpec.m; sourceTree = "<group>"; };
-		3D07C5A018490BB40073B0A5 /* CALayerNibConfigurationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CALayerNibConfigurationSpec.m; path = BnetClientTests/CALayerNibConfigurationSpec.m; sourceTree = "<group>"; };
 		3D4207F91791CF03001BB6C7 /* BNCColorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCColorManager.h; sourceTree = "<group>"; };
 		3D4207FA1791CF03001BB6C7 /* BNCColorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNCColorManager.m; sourceTree = "<group>"; };
 		3D4207FD1791D4DA001BB6C7 /* BNCPacketSidCreateAccount2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNCPacketSidCreateAccount2.h; sourceTree = "<group>"; };
@@ -234,6 +249,7 @@
 		3D07C56A1847B8060073B0A5 /* BnetClientTests */ = {
 			isa = PBXGroup;
 			children = (
+				2DBC9FB11946238E0068E6AF /* BnetClientTests-Bridging-Header.h */,
 				3D07C5771847B9390073B0A5 /* BattleNet */,
 				3D07C5761847B9110073B0A5 /* Categories */,
 				3D07C5751847B9030073B0A5 /* Supporting Files */,
@@ -253,10 +269,10 @@
 		3D07C5761847B9110073B0A5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				3D07C5721847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m */,
-				3D07C5821847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m */,
-				3D07C5A018490BB40073B0A5 /* CALayerNibConfigurationSpec.m */,
-				3D07C59E18490BA50073B0A5 /* NSStringReverseSpec.m */,
+				3D07C5721847B8F50073B0A5 /* NSMutableDataPacketBufferTest.m */,
+				2DBC9FB21946238F0068E6AF /* StringReverseTest.swift */,
+				2D6BF3FE194626F2002478EB /* CALayerNibConfigurationTest.swift */,
+				2D78F6AB19462CB500D6B2C0 /* NSDataBrokenSha1Test.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -264,8 +280,8 @@
 		3D07C5771847B9390073B0A5 /* BattleNet */ = {
 			isa = PBXGroup;
 			children = (
-				3D07C59B18490B950073B0A5 /* XSha1Spec.m */,
 				3D07C59A18490B950073B0A5 /* BNCIconsBniSpec.m */,
+				2DE0A7AA194629D700B9942A /* XSha1Test.m */,
 			);
 			name = BattleNet;
 			sourceTree = "<group>";
@@ -499,6 +515,8 @@
 			);
 			dependencies = (
 				3D7A6961184701ED006374F8 /* PBXTargetDependency */,
+				2DBC9FB5194625060068E6AF /* PBXTargetDependency */,
+				2DBC9FB81946260A0068E6AF /* PBXTargetDependency */,
 			);
 			name = BnetClientTests;
 			productName = BnetClientTests;
@@ -633,18 +651,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D07C5A218490C590073B0A5 /* XSha1Spec.m in Sources */,
 				3D07C5A318490C5D0073B0A5 /* BNCIconsBniSpec.m in Sources */,
-				3D07C5741847B8F50073B0A5 /* NSMutableDataPacketBufferSpec.m in Sources */,
-				3D07C5831847DC1F0073B0A5 /* NSDataBrokenSHA1Spec.m in Sources */,
-				3D07C5A418490C650073B0A5 /* CALayerNibConfigurationSpec.m in Sources */,
-				3D07C5A518490C670073B0A5 /* NSStringReverseSpec.m in Sources */,
+				3D07C5741847B8F50073B0A5 /* NSMutableDataPacketBufferTest.m in Sources */,
+				2DBC9FB31946238F0068E6AF /* StringReverseTest.swift in Sources */,
+				2D6BF3FF194626F2002478EB /* CALayerNibConfigurationTest.swift in Sources */,
+				2D78F6AC19462CB500D6B2C0 /* NSDataBrokenSha1Test.m in Sources */,
+				2DE0A7AB194629D700B9942A /* XSha1Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2DBC9FB5194625060068E6AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D5B0ABF1688DAE70028C6BA /* BnetClient */;
+			targetProxy = 2DBC9FB4194625060068E6AF /* PBXContainerItemProxy */;
+		};
+		2DBC9FB81946260A0068E6AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D5B0ABF1688DAE70028C6BA /* BnetClient */;
+			targetProxy = 2DBC9FB71946260A0068E6AF /* PBXContainerItemProxy */;
+		};
 		3D7A6961184701ED006374F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3D5B0ABF1688DAE70028C6BA /* BnetClient */;
@@ -733,6 +761,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C7741CC003B54B6EBBB1B92E /* Pods.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BnetClient/BnetClient-Prefix.pch";
 				INFOPLIST_FILE = "BnetClient/BnetClient-Info.plist";
@@ -745,6 +777,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C7741CC003B54B6EBBB1B92E /* Pods.xcconfig */;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BnetClient/BnetClient-Prefix.pch";
 				INFOPLIST_FILE = "BnetClient/BnetClient-Info.plist";
@@ -785,7 +821,10 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = "BnetClientTests/BnetClientTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BnetClientTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -820,7 +859,9 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = "BnetClientTests/BnetClientTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "BnetClientTests-Bridging-Header.h";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
