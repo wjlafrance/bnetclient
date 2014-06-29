@@ -15,8 +15,6 @@
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
 
-#import <NSLogger/LoggerClient.h>
-
 #endif
 
 #define ATTR_PURE __attribute__((pure))

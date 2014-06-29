@@ -71,7 +71,6 @@
 		3D8C6E0D1695004D0040B3C4 /* xsha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C6E0C1695004D0040B3C4 /* xsha1.c */; };
 		3D8CA48E169544170011B8BD /* NSData+BrokenSHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CA48D169544170011B8BD /* NSData+BrokenSHA1.m */; };
 		3DF264B416A48F9000ED7515 /* WJLRuntimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF264B316A48F9000ED7515 /* WJLRuntimeUtils.m */; };
-		5040EB1D543C4A37BE8CBEB9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74261BEBD8C04818A6BDC126 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,7 +215,6 @@
 		3DF264B216A48F9000ED7515 /* WJLRuntimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJLRuntimeUtils.h; sourceTree = "<group>"; };
 		3DF264B316A48F9000ED7515 /* WJLRuntimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJLRuntimeUtils.m; sourceTree = "<group>"; };
 		74261BEBD8C04818A6BDC126 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7741CC003B54B6EBBB1B92E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,7 +226,6 @@
 				3D5B0AC51688DAE70028C6BA /* UIKit.framework in Frameworks */,
 				3D5B0AC71688DAE70028C6BA /* Foundation.framework in Frameworks */,
 				3D5B0AC91688DAE70028C6BA /* CoreGraphics.framework in Frameworks */,
-				5040EB1D543C4A37BE8CBEB9 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +332,6 @@
 				3D07C56A1847B8060073B0A5 /* BnetClientTests */,
 				3D5B0AC31688DAE70028C6BA /* Frameworks */,
 				3D5B0AC11688DAE70028C6BA /* Products */,
-				C7741CC003B54B6EBBB1B92E /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -492,7 +488,6 @@
 				3D5B0ABC1688DAE70028C6BA /* Sources */,
 				3D5B0ABD1688DAE70028C6BA /* Frameworks */,
 				3D5B0ABE1688DAE70028C6BA /* Resources */,
-				DCDBCBAD8D554F24BDB6D2A7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -577,23 +572,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		DCDBCBAD8D554F24BDB6D2A7 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3D5B0ABC1688DAE70028C6BA /* Sources */ = {
@@ -759,7 +737,6 @@
 		};
 		3D5B0AFA1688DAE70028C6BA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7741CC003B54B6EBBB1B92E /* Pods.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -775,7 +752,6 @@
 		};
 		3D5B0AFB1688DAE70028C6BA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7741CC003B54B6EBBB1B92E /* Pods.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -791,7 +767,6 @@
 		};
 		3D7A6963184701ED006374F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7741CC003B54B6EBBB1B92E /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BnetClient.app/BnetClient";
 				CLANG_ENABLE_MODULES = YES;
@@ -832,7 +807,6 @@
 		};
 		3D7A6964184701ED006374F8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7741CC003B54B6EBBB1B92E /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BnetClient.app/BnetClient";
 				CLANG_ENABLE_MODULES = YES;

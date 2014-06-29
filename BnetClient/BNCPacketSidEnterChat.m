@@ -25,7 +25,7 @@
 - (NSData *)bncsResponseForPacket:(NSMutableData *)packet forBattleNetConnection:(BNCChatConnection *)conn
 {
     conn.username = [packet readString];
-    LogMessageCompat(@"Entered chat as %@", conn.username);
+    NSLog(@"Entered chat as %@", conn.username);
     return nil;
 }
 

@@ -35,7 +35,7 @@
     conn.mpqFilename = [packet readString];
     conn.mpqFormula  = [packet readString];
     
-    LogMessageCompat(@"Hashing key: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"cdkey"]);
+    NSLog(@"Hashing key: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"cdkey"]);
     
     NSMutableData *response = [NSMutableData new];
     [response writeUInt32:conn.serverToken];

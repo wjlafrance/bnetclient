@@ -26,7 +26,7 @@
         }
         [channels addObject:channelName];
     }
-    LogMessageCompat(@"Channels as reported by server: %@", channels);
+    NSLog(@"Channels as reported by server: %@", channels);
     
     return nil;
 }

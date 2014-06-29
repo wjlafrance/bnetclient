@@ -176,7 +176,7 @@
 {
     void (^handlePacket)(int, NSData *) = ^(int tag, NSData *data) {
         BNCPacket *handler = [BNCPacketManager packetHandlerForIdentifier:tag];
-        LogMessageCompat(@"Received packet %@", [handler name]);
+        NSLog(@"Received packet %@", [handler name]);
 
         NSMutableData *buffer = [data mutableCopy];
         if (handler) {
@@ -220,7 +220,7 @@
 {
     if (data) {
         [self.bncsSocket write:data withHandler:^(BOOL __unused success) {
-            LogMessageCompat(@"Sent BNCS packet: %@", data);
+            NSLog(@"Sent BNCS packet: %@", data);
         }];
     }
 }
@@ -229,7 +229,7 @@
 {
     if (data) {
         [self.bnlsSocket write:data withHandler:^(BOOL __unused success) {
-            LogMessageCompat(@"Sent BNLS packet: %@", data);
+            NSLog(@"Sent BNLS packet: %@", data);
         }];
     }
 }
@@ -239,7 +239,7 @@
 
 - (void)debug:(NSString *)string
 {
-    LogMessageCompat(@"BNET DEBUG -- %@", string);
+    NSLog(@"BNET DEBUG -- %@", string);
     [self.delegate battleNetConnection:self outputDebugString:string];
 }
 
@@ -248,7 +248,7 @@
 
 - (void)sendText:(NSString *)string
 {
-    LogMessageCompat(@"SID_CHATCOMMAND: %@", string);
+    NSLog(@"SID_CHATCOMMAND: %@", string);
     NSMutableData *chatcommand = [NSMutableData new];
     [chatcommand writeString:string];
     [self sendBncsPacket:[chatcommand buildBncsPacketWithID:SID_CHATCOMMAND]];
