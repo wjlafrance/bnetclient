@@ -22,56 +22,72 @@
 #include <string.h>
 #include <stdlib.h>
 
-uint32_t ROL(uint32_t val, uint32_t shift)
-{
-    shift &= 0x1f;
-    val = (val >> (0x20 - shift)) | (val << shift);
-    return val;
+
+static const uint32_t SHA1_SEED[] = { 0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0 };
+static const uint32_t SHA1_MAGIC[] = { 0x5A827999, 0x6ED9EBA1, 0x8F1BBCDC, 0xCA62C1D6 };
+
+uint32_t ROL(uint32_t val, uint32_t shift) {
+    shift &= 31;
+    return (val >> (32 - shift)) | (val << shift);
 }
 
-void xsha1_calcHashBuf(const char* input, size_t length, uint32_t* result)
-{
-    void *dataptr = malloc(1024);
-    memset(dataptr, 0, 1024);
-    uint32_t *data = (uint32_t *) dataptr;
-    memcpy(data, input, length);
-    
+void xsha1_calcHashBuf(const char* input, size_t length, uint32_t* result) {
+    uint32_t data[80];
+
+    memset(&data, 0, 320);
+    memcpy(&data, input, length);
+
+// Safe implementation:
+//    for (int i = 0; i < 80; i++) {
+//        size_t offset = i * 4;
+//        uint8_t byte1 = (offset < length) ? input[offset++] : 0;
+//        uint8_t byte2 = (offset < length) ? input[offset++] : 0;
+//        uint8_t byte3 = (offset < length) ? input[offset++] : 0;
+//        uint8_t byte4 = (offset < length) ? input[offset++] : 0;
+//        data[i] = byte1 | byte2 << 8 | byte3 << 16 | byte4 << 24;
+//    }
+
     for (int i = 16; i < 80; i++) {
         data[i] = ROL(1, (int) (data[i-16] ^ data[i-8] ^ data[i-14] ^ data[i-3]) % 32);
     }
-    
-    uint32_t A = 0x67452301;
-    uint32_t B = 0xefcdab89;
-    uint32_t C = 0x98badcfe;
-    uint32_t D = 0x10325476;
-    uint32_t E = 0xc3d2e1f0;
-    
-    uint32_t temp = 0;
+
+    uint32_t A = SHA1_SEED[0];
+    uint32_t B = SHA1_SEED[1];
+    uint32_t C = SHA1_SEED[2];
+    uint32_t D = SHA1_SEED[3];
+    uint32_t E = SHA1_SEED[4];
+
     for (int i = 0; i < 20; i++) {
-        temp = *data++ + ROL(A, 5) + E + ((B & C) | (~B & D)) + 0x5A827999;
-        E = D; D = C; C = ROL(B, 30); B = A; A = temp;
+        E += SHA1_MAGIC[0] + ROL(A, 5) + data[i];
+        E += D ^ (B & (C ^ D));
+        B = ROL(B, 30);
+        uint32_t T = E; E = D; D = C; C = B; B = A; A = T;
+    }
+
+    for (int i = 20; i < 40; i++) {
+        E += SHA1_MAGIC[1] + ROL(A, 5) + data[i];
+        E += B ^ C ^ D;
+        B = ROL(B, 30);
+        uint32_t T = E; E = D; D = C; C = B; B = A; A = T;
+    }
+
+    for (int i = 40; i < 60; i++) {
+        E += SHA1_MAGIC[2] + ROL(A, 5) + data[i];
+        E += (B & C) | (C & D) | (D & B);
+        B = ROL(B, 30);
+        uint32_t T = E; E = D; D = C; C = B; B = A; A = T;
+    }
+
+    for (int i = 60; i < 80; i++) {
+        E += SHA1_MAGIC[3] + ROL(A, 5) + data[i];
+        E += B ^ C ^ D;
+        B = ROL(B, 30);
+        uint32_t T = E; E = D; D = C; C = B; B = A; A = T;
     }
     
-    for (int i = 0; i < 20; i++) {
-        temp = (D ^ C ^ B) + E + ROL(temp, 5) + *data++ + 0x6ed9eba1;
-        E = D; D = C; C = ROL(B, 30); B = A; A = temp;
-    }
-    
-    for (int i = 0; i < 20; i++) {
-        temp = *data++ + ROL(temp, 5) + E + ((C & B) | (D & C) | (D & B)) - 0x70E44324;
-        E = D; D = C; C = ROL(B, 30); B = A; A = temp;
-    }
-    
-    for (int i = 0; i < 20; i++) {
-        temp = (D ^ C ^ B) + E + ROL(temp, 5) + *data++ - 0x359d3e2a;
-        E = D; D = C; C = ROL(B, 30); B = A; A = temp;
-    }
-    
-    result[0] = A + 0x67452301;
-    result[1] = B + 0xefcdab89;
-    result[2] = C + 0x98badcfe;
-    result[3] = D + 0x10325476;
-    result[4] = E + 0xc3d2e1f0;
-    
-    free(dataptr);
+    result[0] = A + SHA1_SEED[0];
+    result[1] = B + SHA1_SEED[1];
+    result[2] = C + SHA1_SEED[2];
+    result[3] = D + SHA1_SEED[3];
+    result[4] = E + SHA1_SEED[4];
 }
