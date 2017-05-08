@@ -67,7 +67,6 @@
 		3D7A6954184701ED006374F8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D7A6953184701ED006374F8 /* XCTest.framework */; };
 		3D7A6955184701ED006374F8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5B0AC61688DAE70028C6BA /* Foundation.framework */; };
 		3D7A6956184701ED006374F8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D5B0AC41688DAE70028C6BA /* UIKit.framework */; };
-		3D7A696618470319006374F8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D7A696518470319006374F8 /* libPods.a */; };
 		3D8C6E0D1695004D0040B3C4 /* xsha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C6E0C1695004D0040B3C4 /* xsha1.c */; };
 		3D8CA48E169544170011B8BD /* NSData+BrokenSHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8CA48D169544170011B8BD /* NSData+BrokenSHA1.m */; };
 		3DF264B416A48F9000ED7515 /* WJLRuntimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF264B316A48F9000ED7515 /* WJLRuntimeUtils.m */; };
@@ -82,6 +81,20 @@
 			remoteInfo = BnetClient;
 		};
 		2DBC9FB71946260A0068E6AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D5B0AB71688DAE70028C6BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D5B0ABF1688DAE70028C6BA;
+			remoteInfo = BnetClient;
+		};
+		2DF6A46F19639D7800032C14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3D5B0AB71688DAE70028C6BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3D5B0ABF1688DAE70028C6BA;
+			remoteInfo = BnetClient;
+		};
+		2DF6A47119639D7800032C14 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3D5B0AB71688DAE70028C6BA /* Project object */;
 			proxyType = 1;
@@ -233,7 +246,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D7A696618470319006374F8 /* libPods.a in Frameworks */,
 				3D7A6954184701ED006374F8 /* XCTest.framework in Frameworks */,
 				3D7A6956184701ED006374F8 /* UIKit.framework in Frameworks */,
 				3D7A6955184701ED006374F8 /* Foundation.framework in Frameworks */,
@@ -512,6 +524,8 @@
 				3D7A6961184701ED006374F8 /* PBXTargetDependency */,
 				2DBC9FB5194625060068E6AF /* PBXTargetDependency */,
 				2DBC9FB81946260A0068E6AF /* PBXTargetDependency */,
+				2DF6A47019639D7800032C14 /* PBXTargetDependency */,
+				2DF6A47219639D7800032C14 /* PBXTargetDependency */,
 			);
 			name = BnetClientTests;
 			productName = BnetClientTests;
@@ -650,6 +664,16 @@
 			isa = PBXTargetDependency;
 			target = 3D5B0ABF1688DAE70028C6BA /* BnetClient */;
 			targetProxy = 2DBC9FB71946260A0068E6AF /* PBXContainerItemProxy */;
+		};
+		2DF6A47019639D7800032C14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D5B0ABF1688DAE70028C6BA /* BnetClient */;
+			targetProxy = 2DF6A46F19639D7800032C14 /* PBXContainerItemProxy */;
+		};
+		2DF6A47219639D7800032C14 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3D5B0ABF1688DAE70028C6BA /* BnetClient */;
+			targetProxy = 2DF6A47119639D7800032C14 /* PBXContainerItemProxy */;
 		};
 		3D7A6961184701ED006374F8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

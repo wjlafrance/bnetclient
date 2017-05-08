@@ -29,6 +29,8 @@
 
 - (void)awakeFromNib
 {
+    [super awakeFromNib];
+
     self.connection = [[BNCChatConnection alloc] initWithDelegate:self];
 
     BNCFileTransferConnection *bnftp = [BNCFileTransferConnection new];
@@ -111,10 +113,12 @@
 - (void)battleNetConnection:(BNCChatConnection *)__unused conn
     outputDebugString:(NSString *)string
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager debugColor],
-        kAddChatTextKey: string
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager debugColor],
+            kAddChatTextKey: string
+        }]];
+    });
 }
 
 #pragma mark - BattleNet Connection Delegate: Socket connection callbacks
@@ -122,47 +126,57 @@
 - (void)battleNetConnection:(BNCChatConnection *)__unused conn
     didBeginConnectingToService:(BattleNetService)service
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager pendingColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[%@] Connecting...", [self stringForBattleNetService:service]]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager pendingColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[%@] Connecting...", [self stringForBattleNetService:service]]
+        }]];
+    });
 }
 
 - (void)battleNetConnection:(BNCChatConnection *)__unused conn
     didConnectToService:(BattleNetService)service
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager successColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[%@] Connected!", [self stringForBattleNetService:service]]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager successColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[%@] Connected!", [self stringForBattleNetService:service]]
+        }]];
+    });
 }
 
 - (void)battleNetConnection:(BNCChatConnection *)__unused conn
    didDisconnectFromService:(BattleNetService)service
                   withError:(NSString *)error
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager errorColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[%@] Disconnected: %@", [self stringForBattleNetService:service], error]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager errorColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[%@] Disconnected: %@", [self stringForBattleNetService:service], error]
+        }]];
+    });
 }
 
 - (void)battleNetConnection:(BNCChatConnection *)__unused conn
     didBeginCreatingAccountForService:(BattleNetService)service
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager pendingColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[%@] Creating account.. ", [self stringForBattleNetService:service]]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager pendingColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[%@] Creating account.. ", [self stringForBattleNetService:service]]
+        }]];
+    });
 }
 
 - (void)battleNetConnection:(BNCChatConnection *)__unused conn
     didCreateAccountForService:(BattleNetService)service
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager pendingColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[%@] Created account! ", [self stringForBattleNetService:service]]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager pendingColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[%@] Created account! ", [self stringForBattleNetService:service]]
+        }]];
+    });
 }
 
 #pragma mark - BattleNet Connection Delegate: Client Authentication
@@ -170,29 +184,35 @@
 - (void)battleNetConnection:(BNCChatConnection *)__unused conn
     didBeginAuthenticatingClientToService:(BattleNetService)service
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager pendingColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[%@] Authenticating...", [self stringForBattleNetService:service]]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager pendingColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[%@] Authenticating...", [self stringForBattleNetService:service]]
+        }]];
+    });
 }
 
 - (void)battleNetConnection:(BNCChatConnection *)__unused conn
     didAuthenticateClientToService:(BattleNetService)service
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager successColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[%@] Authenticated!", [self stringForBattleNetService:service]]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager successColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[%@] Authenticated!", [self stringForBattleNetService:service]]
+        }]];
+    });
 }
 
 - (void)battleNetConnection:(BNCChatConnection *)__unused conn
     didFailToAuthenticateClientToService:(BattleNetService)service
     withError:(NSString *)error
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager errorColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[%@] Authentication failed: %@", [self stringForBattleNetService:service], error]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager errorColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[%@] Authentication failed: %@", [self stringForBattleNetService:service], error]
+        }]];
+    });
 }
 
 #pragma mark - BattleNet Connection Delegate: User Authentication
@@ -200,29 +220,35 @@
 - (void)battleNetConnection:(BNCChatConnection *)__unused conn
     didBeginAuthenticatingUserToService:(BattleNetService)service
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager pendingColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[%@] Logging in..", [self stringForBattleNetService:service]]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager pendingColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[%@] Logging in..", [self stringForBattleNetService:service]]
+        }]];
+    });
 }
 
 - (void)battleNetConnection:(BNCChatConnection *)__unused conn
     didAuthenticateUserToService:(BattleNetService)service
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager successColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[%@] Logged in!", [self stringForBattleNetService:service]]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager successColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[%@] Logged in!", [self stringForBattleNetService:service]]
+        }]];
+    });
 }
 
 - (void)battleNetConnection:(BNCChatConnection *)__unused conn
     didFailToAuthenticateUserToService:(BattleNetService)service
     withError:(NSError *)error
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager errorColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[%@] Login failed: %@", [self stringForBattleNetService:service], error]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager errorColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[%@] Login failed: %@", [self stringForBattleNetService:service], error]
+        }]];
+    });
 }
 
 #pragma mark - BattleNet Connection Delegate: Chat events
@@ -234,101 +260,107 @@
     flags:(BattleNetFlags)flags
     ping:(uint32_t)__unused ping
 {
-    switch (event) {
-        case EID_SHOWUSER:
-            [self.channel addUserWithName:username client:[[text substringToIndex:4] stringByReversingString] flags:flags];
-            [self.channelList reloadData];
-            break;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        switch (event) {
+            case EID_SHOWUSER:
+                [self.channel addUserWithName:username client:[[text substringToIndex:4] stringByReversingString] flags:flags];
+                [self.channelList reloadData];
+                break;
 
-        case EID_JOIN:
-            [self.channel addUserWithName:username client:[[text substringToIndex:4] stringByReversingString] flags:flags];
-            [self.channelList reloadData];
-            [self.chatBox addChat:@[@{
-                kAddChatColorKey: [BNCColorManager successColor],
-                kAddChatTextKey: [NSString stringWithFormat:@"%@ has joined the channel.", username]
-            }]];
-            break;
+            case EID_JOIN:
+                [self.channel addUserWithName:username client:[[text substringToIndex:4] stringByReversingString] flags:flags];
+                [self.channelList reloadData];
+                [self.chatBox addChat:@[@{
+                    kAddChatColorKey: [BNCColorManager successColor],
+                    kAddChatTextKey: [NSString stringWithFormat:@"%@ has joined the channel.", username]
+                }]];
+                break;
 
-        case EID_LEAVE:
-            [self.channel removeUser:username];
-            [self.channelList reloadData];
-            [self.chatBox addChat:@[@{
-                kAddChatColorKey: [BNCColorManager channelStatusColor],
-                kAddChatTextKey: [NSString stringWithFormat:@"%@ has left the channel.", username]
-            }]];
-            break;
+            case EID_LEAVE:
+                [self.channel removeUser:username];
+                [self.channelList reloadData];
+                [self.chatBox addChat:@[@{
+                    kAddChatColorKey: [BNCColorManager channelStatusColor],
+                    kAddChatTextKey: [NSString stringWithFormat:@"%@ has left the channel.", username]
+                }]];
+                break;
 
-        case EID_TALK:
-            [self.chatBox addChat:@[@{
-                kAddChatColorKey: [BNCColorManager chatUsernameColor],
-                kAddChatTextKey: [NSString stringWithFormat:@"<%@> ", username]
-            }, @{
-                kAddChatColorKey: [BNCColorManager chatTextColor],
-                kAddChatTextKey: text
-            }]];
-            break;
+            case EID_TALK:
+                [self.chatBox addChat:@[@{
+                    kAddChatColorKey: [BNCColorManager chatUsernameColor],
+                    kAddChatTextKey: [NSString stringWithFormat:@"<%@> ", username]
+                }, @{
+                    kAddChatColorKey: [BNCColorManager chatTextColor],
+                    kAddChatTextKey: text
+                }]];
+                break;
 
-        case EID_CHANNEL:
-            self.channel = [BNCChannelModel channelWithName:text];
-            [self.channelList reloadData];
-            [self.chatBox addChat:@[@{
-                kAddChatColorKey: [BNCColorManager successColor],
-                kAddChatTextKey: [NSString stringWithFormat:@"Joined channel %@", self.channel.name]
-            }]];
-            break;
+            case EID_CHANNEL:
+                self.channel = [BNCChannelModel channelWithName:text];
+                [self.channelList reloadData];
+                [self.chatBox addChat:@[@{
+                    kAddChatColorKey: [BNCColorManager successColor],
+                    kAddChatTextKey: [NSString stringWithFormat:@"Joined channel %@", self.channel.name]
+                }]];
+                break;
 
-        case EID_USERFLAGS:
-            [self.chatBox addChat:@[@{
-                kAddChatColorKey: [BNCColorManager chatTextColor],
-                kAddChatTextKey: [NSString stringWithFormat:@"Flags updated for %@ (0x%X).", username, flags]
-            }]];
-            break;
+            case EID_USERFLAGS:
+                [self.chatBox addChat:@[@{
+                    kAddChatColorKey: [BNCColorManager chatTextColor],
+                    kAddChatTextKey: [NSString stringWithFormat:@"Flags updated for %@ (0x%X).", username, flags]
+                }]];
+                break;
 
-        case EID_INFO:
-            [self.chatBox addChat:@[@{
-                kAddChatColorKey: [BNCColorManager informationColor],
-                kAddChatTextKey: text
-            }]];
-            break;
+            case EID_INFO:
+                [self.chatBox addChat:@[@{
+                    kAddChatColorKey: [BNCColorManager informationColor],
+                    kAddChatTextKey: text
+                }]];
+                break;
 
-        case EID_ERROR:
-            [self.chatBox addChat:@[@{
-                kAddChatColorKey: [BNCColorManager errorColor],
-                kAddChatTextKey: text
-            }]];
-            break;
+            case EID_ERROR:
+                [self.chatBox addChat:@[@{
+                    kAddChatColorKey: [BNCColorManager errorColor],
+                    kAddChatTextKey: text
+                }]];
+                break;
 
-        default:
-            [self.chatBox addChat:@[@{
-                kAddChatColorKey: [BNCColorManager debugColor],
-                kAddChatTextKey: [NSString stringWithFormat:@"Unhandled chat event 0x%02X (%@, %@)", event, username, text]
-            }]];
-    }
+            default:
+                [self.chatBox addChat:@[@{
+                    kAddChatColorKey: [BNCColorManager debugColor],
+                    kAddChatTextKey: [NSString stringWithFormat:@"Unhandled chat event 0x%02X (%@, %@)", event, username, text]
+                }]];
+        }
+    });
 }
 
 #pragma mark - BNFTP Delegate
 
 - (void)bnftp:(BNCFileTransferConnection *)bnftp didFailWithError:(NSError *)err
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager errorColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[BNFTP] Failed to download %@: %@",
-                          bnftp.filename, err]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager errorColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[BNFTP] Failed to download %@: %@",
+                              bnftp.filename, err]
+        }]];
+    });
 }
 
 - (void)bnftp:(BNCFileTransferConnection *)bnftp didFinishDownload:(NSString *)__unused path
 {
-    [self.chatBox addChat:@[@{
-        kAddChatColorKey: [BNCColorManager successColor],
-        kAddChatTextKey: [NSString stringWithFormat:@"[BNFTP] Downloaded %@ to %@",
-                            bnftp.filename, bnftp.path]
-    }]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.chatBox addChat:@[@{
+            kAddChatColorKey: [BNCColorManager successColor],
+            kAddChatTextKey: [NSString stringWithFormat:@"[BNFTP] Downloaded %@ to %@",
+                                bnftp.filename, bnftp.path]
+        }]];
 
-    if ([path hasSuffix:@"icons.bni"]) {
-        self.icons = [[BNCIconsBni alloc] initWithPath:bnftp.path];
-        [self.channelList reloadData];
-    }
+        if ([path hasSuffix:@"icons.bni"]) {
+            self.icons = [[BNCIconsBni alloc] initWithPath:bnftp.path];
+            [self.channelList reloadData];
+        }
+    });
 }
 
 #pragma mark - UITableViewDelegate

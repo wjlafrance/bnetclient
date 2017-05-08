@@ -44,6 +44,8 @@
 
 - (void)connect:(void(^)(BOOL success))handler
 {
+    NSAssert(NULL != self.hostname, @"self.hostname must be set before calling connect");
+
     NSAssert(NULL != handler, @"Handler must not be NULL");
 
     NSAssert(0 == self.state, @"-connect may only be called once.");
