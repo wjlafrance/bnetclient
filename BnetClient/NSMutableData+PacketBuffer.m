@@ -44,7 +44,7 @@
 
 - (void)writeStringWithoutNullTerminator:(NSString *)string
 {
-    [self appendBytes:[string cStringUsingEncoding:NSASCIIStringEncoding] length:string.length];
+    [self appendData:[string dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES]];
 }
 
 /**
